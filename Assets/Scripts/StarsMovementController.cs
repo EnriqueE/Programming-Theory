@@ -4,19 +4,44 @@ using UnityEngine;
 
 public class StarsMovementController : MonoBehaviour
 {
-    private float speed; 
-    private float offsetHeight;
-    public float initHeight;
-    private bool isMoving = false; 
+    private float speed;
+    private float quantity; 
+    private float origin;
+    private float destination;
+    private float spawnPosition; 
+    private bool isMoving = false;
 
     
-    public void StartMove(float newSpeed, float m_offsetHeight)
+    public void StartMove(float newSpeed, int newQuantity, float newOrigin, float newDestination, float newSpawnPosition)
     {
-        initHeight = transform.position.y;
+        
         speed = newSpeed;
-        offsetHeight = m_offsetHeight;
+        quantity = newQuantity; 
+        destination = newDestination;
+        origin = newOrigin;
+        spawnPosition = newSpawnPosition; 
+
+        Debug.Log("StartMove: speed: " + speed + " origin: " + origin + " destination: " + destination + " spawnPosition: " + spawnPosition);
+
+        ParticleSystem ps = GetComponent<ParticleSystem>();
+        ParticleSystem.EmissionModule em = ps.emission;
+
+
+        em.type = ParticleSystemEmissionType.Time;
+
+
+        em.SetBursts(
+                  new ParticleSystem.Burst[] {
+                  new ParticleSystem.Burst (0, quantity),
+                  
+                     });
+
+
+        transform.position = new Vector3(
+            transform.position.x,
+            origin,
+            transform.position.z);
         isMoving = true;
-        Debug.Log("Jump at " + (initHeight - offsetHeight));
         
     }
     private void Update()
@@ -24,11 +49,11 @@ public class StarsMovementController : MonoBehaviour
         if (isMoving)
         {
             transform.Translate(Vector3.back * speed * Time.deltaTime);
-            if (transform.position.y < initHeight - offsetHeight)
+            if (transform.position.y < destination)
             {
                 transform.position = new Vector3(
                     transform.position.x,
-                    initHeight + offsetHeight ,
+                    spawnPosition,
                     transform.position.z);
                 GetComponent<ParticleSystem>().Play();
             }

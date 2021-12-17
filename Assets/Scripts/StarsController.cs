@@ -14,25 +14,25 @@ public class StarsController : MonoBehaviour
         public float speed;
         public float size;
         public int quantity; 
-        public float offsetHeight; 
+        public float origin;
+        public float destination;
+        public float spawnPosition; 
     }
     private void Start()
     {
         foreach(Star star in stars)
         {
-            ParticleSystem starPS = Instantiate(star.starPS, transform);
-            starPS.startSize = star.size;
             
-            starPS.GetComponent<StarsMovementController>().StartMove(star.speed, star.offsetHeight);
-            starPS.Play();
 
-            ParticleSystem starPSB = Instantiate(star.starPS, transform);
-            starPSB.startSize = star.size *2;
-            starPSB.gameObject.transform.position = new Vector3(
-                starPSB.gameObject.transform.position.x,
-                starPSB.gameObject.transform.position.y - star.offsetHeight,
-                starPSB.gameObject.transform.position.z);
-            starPSB.GetComponent<StarsMovementController>().StartMove(star.speed, star.offsetHeight*2);
+            ParticleSystem starPS = Instantiate(star.starPS, transform);
+            starPS.startSize = star.size;            
+            starPS.GetComponent<StarsMovementController>().StartMove(star.speed, star.quantity, star.origin, star.destination, star.spawnPosition);
+            starPS.Play();
+            
+            ParticleSystem starPSB = Instantiate(star.starPS, transform);            
+            starPSB.startSize = star.size;           
+            
+            starPSB.GetComponent<StarsMovementController>().StartMove(star.speed, star.quantity, star.origin - star.destination, star.destination, star.spawnPosition);
             starPSB.Play();
         }
     }

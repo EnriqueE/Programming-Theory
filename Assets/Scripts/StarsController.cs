@@ -22,18 +22,18 @@ public class StarsController : MonoBehaviour
     {
         foreach(Star star in stars)
         {
-            
 
-            ParticleSystem starPS = Instantiate(star.starPS, transform);
-            starPS.startSize = star.size;            
-            starPS.GetComponent<StarsMovementController>().StartMove(star.speed, star.quantity, star.origin, star.destination, star.spawnPosition);
-            starPS.Play();
-            
-            ParticleSystem starPSB = Instantiate(star.starPS, transform);            
-            starPSB.startSize = star.size;           
-            
-            starPSB.GetComponent<StarsMovementController>().StartMove(star.speed, star.quantity, star.origin - star.destination, star.destination, star.spawnPosition);
-            starPSB.Play();
+            InstantiateStar(star.starPS, star.size, star.speed, star.quantity, star.origin, star.destination, star.spawnPosition);
+            InstantiateStar(star.starPS, star.size, star.speed, star.quantity, star.origin - star.destination, star.destination, star.spawnPosition);
+           
         }
     }
+    private void InstantiateStar(ParticleSystem prefab, float size, float speed,  int quantity, float origin, float destination, float spawnPosition)
+    {
+        ParticleSystem starPS = Instantiate(prefab, transform);
+        starPS.startSize = size;
+        starPS.GetComponent<StarsMovementController>().Initialize(speed, quantity, origin, destination, spawnPosition);
+        starPS.Play();
+    }
+
 }

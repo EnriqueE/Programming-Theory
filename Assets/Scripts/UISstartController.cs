@@ -25,7 +25,6 @@ public class UISstartController : MonoBehaviour
     public void SaveName()
     {
         string name = userNameInput.text;
-        Debug.Log("Saving name: " + name);
         if(name.Length < 4 )
         {
             StartCoroutine("ShowError", "The username must contain at least 4 characters");

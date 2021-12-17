@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -28,10 +29,7 @@ public class GameController : MonoBehaviour
             return m_UserName; 
         }
     }
-    private void ShowErrorMessage(string title, string content)
-    {
-
-    }
+    
     public class Record
     {
         public string username;
@@ -50,6 +48,6 @@ public class GameController : MonoBehaviour
     }
     public void StartGame()
     {
-        Debug.Log("Starting the Game");
+        SceneManager.LoadScene("Game"); 
     }
 }

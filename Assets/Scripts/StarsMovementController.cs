@@ -12,7 +12,7 @@ public class StarsMovementController : MonoBehaviour
     private bool isMoving = false;
 
     
-    public void StartMove(float newSpeed, int newQuantity, float newOrigin, float newDestination, float newSpawnPosition)
+    public void Initialize(float newSpeed, int newQuantity, float newOrigin, float newDestination, float newSpawnPosition)
     {
         
         speed = newSpeed;
@@ -21,26 +21,14 @@ public class StarsMovementController : MonoBehaviour
         origin = newOrigin;
         spawnPosition = newSpawnPosition; 
 
-        Debug.Log("StartMove: speed: " + speed + " origin: " + origin + " destination: " + destination + " spawnPosition: " + spawnPosition);
 
         ParticleSystem ps = GetComponent<ParticleSystem>();
         ParticleSystem.EmissionModule em = ps.emission;
 
-
         em.type = ParticleSystemEmissionType.Time;
+        em.SetBursts(new ParticleSystem.Burst[] { new ParticleSystem.Burst (0, quantity), });
 
-
-        em.SetBursts(
-                  new ParticleSystem.Burst[] {
-                  new ParticleSystem.Burst (0, quantity),
-                  
-                     });
-
-
-        transform.position = new Vector3(
-            transform.position.x,
-            origin,
-            transform.position.z);
+        transform.position = new Vector3(transform.position.x, origin, transform.position.z);
         isMoving = true;
         
     }
@@ -51,10 +39,7 @@ public class StarsMovementController : MonoBehaviour
             transform.Translate(Vector3.back * speed * Time.deltaTime);
             if (transform.position.y < destination)
             {
-                transform.position = new Vector3(
-                    transform.position.x,
-                    spawnPosition,
-                    transform.position.z);
+                transform.position = new Vector3(transform.position.x,spawnPosition,transform.position.z);
                 GetComponent<ParticleSystem>().Play();
             }
         }

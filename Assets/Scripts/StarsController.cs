@@ -33,6 +33,7 @@ public class StarsController : MonoBehaviour
         ParticleSystem starPS = Instantiate(prefab, transform);
         starPS.startSize = size;
         starPS.GetComponent<StarsMovementController>().Initialize(speed, quantity, origin, destination, spawnPosition);
+        starPS.Stop(); 
         starPS.Play();
     }
 

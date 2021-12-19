@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private Vector3 rotation;
-    private float minRotationYToRestart = 0.0001f; 
+    private float minRotationYToRestart = 0.001f; 
 
     private void Update()
     {

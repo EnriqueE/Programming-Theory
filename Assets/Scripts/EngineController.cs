@@ -58,21 +58,10 @@ public class EngineController : MonoBehaviour
 
         light.color = lightColor; 
         
-
-
-
-        if (!enabledMainPS)
-        {
-            mainPS.gameObject.SetActive(false);
-        }
-        if(!enabledTrailPS)
-        {
-            trailPS.gameObject.SetActive(false);    
-        }
-        if(!enabledLight)
-        {
-            light.gameObject.SetActive(false);  
-        }
+        mainPS.gameObject.SetActive(enabledMainPS);
+        trailPS.gameObject.SetActive(enabledTrailPS);   
+        light.gameObject.SetActive(enabledLight);  
+      
     }
     private void Update()
     {

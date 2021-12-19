@@ -66,6 +66,6 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(
             Mathf.Max(-boundaryHorizontal, Mathf.Min(boundaryHorizontal,transform.position.x)),
             Mathf.Max(boundaryBottom, Mathf.Min(boundaryTop, transform.position.y)),
-            0);
+            transform.position.z);
     }
 }

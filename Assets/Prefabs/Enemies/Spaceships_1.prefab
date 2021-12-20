@@ -244,6 +244,7 @@ MonoBehaviour:
   health: 50
   enemyGameObject: {fileID: 8914718231150704607}
   explosionPS: {fileID: 7840776208272053889}
+  explosionClip: {fileID: 8300000, guid: 89a25570c44ca4147b0c2d44cd240675, type: 3}
 --- !u!1 &8914718231150704607
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,15 +374,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8255215019295333938, guid: 139c09de669d89546999f577551dd885, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.35448357
       objectReference: {fileID: 0}
     - target: {fileID: 8255215019295333938, guid: 139c09de669d89546999f577551dd885, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.35448357
       objectReference: {fileID: 0}
     - target: {fileID: 8255215019295333938, guid: 139c09de669d89546999f577551dd885, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 0.35448357
       objectReference: {fileID: 0}
     - target: {fileID: 8255215019295333938, guid: 139c09de669d89546999f577551dd885, type: 3}
       propertyPath: m_LocalPosition.x

@@ -49,8 +49,9 @@ MonoBehaviour:
   health: 150
   enemyGameObject: {fileID: 799128018081147306}
   explosionPS: {fileID: 2493325990070115328}
+  explosionClip: {fileID: 0}
   speed: 1.5
-  destroyWhenReachY: -6
+  destroyWhenReachY: -5
 --- !u!114 &799128018081147307
 MonoBehaviour:
   m_ObjectHideFlags: 0

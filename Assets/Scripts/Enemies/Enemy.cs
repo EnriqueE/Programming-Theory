@@ -6,11 +6,15 @@ public class Enemy : MonoBehaviour
 {
     public int health = 1;
     public GameObject enemyGameObject; 
-    public GameObject explosionPS
-        ;
+    public GameObject explosionPS;
+    public AudioClip explosionClip;
 
-    
+    private AudioSource audioSource;
 
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();  
+    }
     public void Hit(Bullet bullet)
     {
 
@@ -28,6 +32,10 @@ public class Enemy : MonoBehaviour
     }
     public virtual void Death()
     {
+        // Audio Explision
+        AudioController.instance.Play(explosionClip); 
+
+        // Explosion Particle system
         explosionPS.transform.parent = null; 
         if (explosionPS && explosionPS.GetComponent<ParticleSystem>())
         {

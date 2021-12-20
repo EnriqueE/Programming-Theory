@@ -15,7 +15,7 @@ public class Rock : Enemy
             gameObject.transform.position.y - speed * Time.deltaTime,
             gameObject.transform.position.z);
         // Destroy on out of screen
-        if (gameObject.transform.position.y <= destroyWhenReachY)
+       if (gameObject.transform.position.y <= destroyWhenReachY)
         {
             SilentDeath();
         }

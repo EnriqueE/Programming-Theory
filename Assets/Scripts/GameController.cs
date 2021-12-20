@@ -35,7 +35,9 @@ public class GameController : MonoBehaviour
         public string username;
         public int score; 
     }
-
+    public GameState gameState = GameState.intro;
+    public enum GameState { intro, startMenu, play, gameOver }
+    
     private void Awake()
     {
         if (instance != null)

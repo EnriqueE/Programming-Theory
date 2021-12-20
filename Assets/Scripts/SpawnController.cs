@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {
-    public Rock rock1;
+    public Enemy rock1;
     public float boundaryHorizontal = 9.0f;     
     public float rock1Rate = 3.0f;
     private float lastRockTime = 0.0f;
@@ -20,7 +20,7 @@ public class SpawnController : MonoBehaviour
 
         if(Time.time - lastRockTime >= rock1Rate)
         {
-            Rock rockInstance = Instantiate(rock1);
+            Enemy rockInstance = Instantiate(rock1);
             rockInstance.transform.position = new Vector3(
                 Random.Range(-boundaryHorizontal, boundaryHorizontal),spawnPositionY,0);
             lastRockTime = Time.time;

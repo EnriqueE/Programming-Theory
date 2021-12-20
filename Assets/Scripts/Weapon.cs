@@ -11,17 +11,19 @@ public class Weapon : MonoBehaviour
 
     public List<GameObject> pooledBullets;
     public int amounToPool;
+    private GameObject pool; 
 
     private float lastBulletTime;
 
     private void Start()
     {
+        pool = GameObject.Find("Pool"); 
         pooledBullets = new List<GameObject>();
         GameObject tmp;
         for (int i = 0; i < amounToPool; i++)
         {
          
-            tmp = Instantiate(bulletPrefab);
+            tmp = Instantiate(bulletPrefab, pool.transform );
          
             tmp.SetActive(false);
             tmp.transform.Translate(gameObject.transform.position);

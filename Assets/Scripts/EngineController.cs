@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EngineController : MonoBehaviour
 {
+
+    public keyTriggerType engineTrigger; 
+
     [Header("Main Particle Syste")]
     public bool enabledMainPS; 
     public ParticleSystem mainPS;

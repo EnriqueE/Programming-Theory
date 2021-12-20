@@ -5,19 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int health = 1;
-    public GameObject explosionPrefab;
+    public GameObject enemyGameObject; 
+    public GameObject explosionPS
+        ;
+
     
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
     public void Hit(Bullet bullet)
     {
 
@@ -35,38 +28,11 @@ public class Enemy : MonoBehaviour
     }
     public virtual void Death()
     {
-        explosionPrefab.transform.parent = null; 
-        if (explosionPrefab && explosionPrefab.GetComponent<ParticleSystem>())
+        explosionPS.transform.parent = null; 
+        if (explosionPS && explosionPS.GetComponent<ParticleSystem>())
         {
-            explosionPrefab.GetComponent<ParticleSystem>().Play();            
-            foreach (Transform child in gameObject.transform)
-            {
-                if (child.GetComponent<ParticleSystem>())
-                {
-                    child.GetComponent<ParticleSystem>().Play();
-                }
-            }
-        }
-
-        if (gameObject.GetComponent<MeshRenderer>())
-        {
-            gameObject.GetComponent<MeshRenderer>().enabled = false;
-        }
-        foreach (Transform child in gameObject.transform)
-        {
-            if (child.GetComponent<MeshRenderer>())
-            {
-                child.GetComponent<MeshRenderer>().enabled = false;
-            }
-        }
-        if (gameObject.GetComponent<CapsuleCollider>())
-        {
-            gameObject.GetComponent<CapsuleCollider>().enabled = false;
-        }
-        if(gameObject.GetComponent<MeshCollider>())
-        {
-            gameObject.GetComponent<MeshCollider>().enabled = false;
-        }
+            explosionPS.SetActive(true);
+        }        
         Destroy(gameObject);
     }
 }

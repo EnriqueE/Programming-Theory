@@ -22,9 +22,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") && other.GetComponent<Enemy>())
+        if (other.GetComponentInParent<Enemy>())
         {
-            other.GetComponent<Enemy>().Hit(this);
+            other.GetComponentInParent<Enemy>().Hit(this);
             Collision(other);
         }
     }

@@ -7,7 +7,8 @@ public class Weapon : MonoBehaviour
     public GameObject bulletPrefab;
     public float damage;
     public float speed;
-    public float bulletDelay = 0.1f; 
+    public float bulletDelay = 0.1f;
+    public float inheritWeaponRotation; 
 
     public List<GameObject> pooledBullets;
     public int amounToPool;
@@ -19,15 +20,14 @@ public class Weapon : MonoBehaviour
     {
         pool = GameObject.Find("Pool"); 
         pooledBullets = new List<GameObject>();
-        GameObject tmp;
+        GameObject bulletInstance;
         for (int i = 0; i < amounToPool; i++)
-        {
-         
-            tmp = Instantiate(bulletPrefab, pool.transform );
-         
-            tmp.SetActive(false);
-            tmp.transform.Translate(gameObject.transform.position);
-            pooledBullets.Add(tmp);
+        {         
+            bulletInstance = Instantiate(bulletPrefab, pool.transform );           
+            bulletInstance.name = "Bullet from " + gameObject.name + " of " + gameObject.transform.root.name; 
+            bulletInstance.SetActive(false);
+            bulletInstance.transform.Translate(gameObject.transform.position);
+            pooledBullets.Add(bulletInstance);
         }
 
         
@@ -44,6 +44,9 @@ public class Weapon : MonoBehaviour
                     lastBulletTime = Time.time;
                     bullet.SetActive(true);
                     bullet.transform.position = transform.position;
+                    Debug.Log("Taking rotation from " + transform.name + " of " + transform.parent.name);
+                    bullet.transform.rotation = gameObject.transform.rotation;
+                    Debug.Log("rotation: " + bullet.transform.rotation);
                 }
             }
         }

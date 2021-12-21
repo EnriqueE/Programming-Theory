@@ -2,19 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class Bullet : MonoBehaviour
 {
     public float speed = 10.0f;
-    public float boundaryTop = 9.0f;
+    private float boundaryTop = 9.0f;
+    private float boundaryBottom = -5.0f;
+    private float boundaryHorizontal = 11.0f;
+
     public int damage = 1;
     public void Update()
     {
-        // Destroy if out of boundary
-        gameObject.transform.position = new Vector3(
+
+        // Bullet movement
+        /*gameObject.transform.position = new Vector3(
             transform.position.x,
             transform.position.y + (speed * Time.deltaTime),
-            transform.position.z);
-        if (transform.position.y > boundaryTop)
+            transform.position.z);*/
+        transform.position += transform.TransformDirection(Vector3.forward * speed  * Time.deltaTime);
+
+        /*gameObject.transform.position = transform.rotation.eulerAngles * speed * Time.deltaTime; */
+
+        // Destroy if out of boundary
+        if (transform.position.y > boundaryTop ||
+            transform.position.x > boundaryHorizontal ||
+            transform.position.x < -boundaryHorizontal ||
+            transform.position.y < boundaryBottom)
             DestroyBullet();
 
 

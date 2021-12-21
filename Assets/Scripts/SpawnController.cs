@@ -6,14 +6,9 @@ namespace PathCreation.Examples
 {
     public class SpawnController : MonoBehaviour
     {
-        //public Enemy rock1;
         public float boundaryHorizontal = 9.0f;
         public GameObject enemiesContainer; 
-        // public float rock1Rate = 3.0f;
-        // public int quantity = 1; 
-        // private float lastRockTime = 0.0f;
         public float spawnPositionY = 8.0f;
-        //  private int quantitySpawned = 0;
         private float initTime;
         private float gameTime
         {
@@ -91,7 +86,8 @@ namespace PathCreation.Examples
                     Enemy enemy = Instantiate(wave.enemy, enemiesContainer.transform);
                     enemy.transform.position = new Vector3(
                         UnityEngine.Random.Range(-boundaryHorizontal, boundaryHorizontal),
-                        spawnPositionY, 0) ; 
+                        spawnPositionY, 0);
+                    enemy.transform.rotation = wave.enemy.transform.rotation; 
                     if(wave.movementType == Wave.MovementType.followPath)
                     {
                         PathFollower pathFollower = enemy.gameObject.AddComponent<PathFollower>();

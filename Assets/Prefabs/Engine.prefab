@@ -4960,7 +4960,7 @@ MonoBehaviour:
   trailPSParticleLifeTime: 1.08
   trailPSTrigger: 0
   enabledLight: 1
-  light: {fileID: 3579361768982873159}
+  bulletLight: {fileID: 3579361768982873159}
   lightColor: {r: 0, g: 0.30588236, b: 1, a: 0}
   lightTrigger: 1
 --- !u!1 &3579361770247673308

@@ -5,7 +5,6 @@ using UnityEngine;
 public class EngineController : MonoBehaviour
 {
 
-    public keyTriggerType engineTrigger; 
 
     [Header("Main Particle Syste")]
     public bool enabledMainPS; 
@@ -31,7 +30,7 @@ public class EngineController : MonoBehaviour
 
     [Header("Light")]
     public bool enabledLight = false; 
-    public Light light;
+    public Light bulletLight;
     public Color lightColor;
     public keyTriggerType lightTrigger; 
     [Space(3)]
@@ -59,11 +58,11 @@ public class EngineController : MonoBehaviour
         trailPS.startSize = mainPSParticleSize;
         trailPS.GetComponent<ParticleSystemRenderer>().material = trailPSMaterial;
 
-        light.color = lightColor; 
+        bulletLight.color = lightColor; 
         
         mainPS.gameObject.SetActive(enabledMainPS);
         trailPS.gameObject.SetActive(enabledTrailPS);   
-        light.gameObject.SetActive(enabledLight);  
+        bulletLight.gameObject.SetActive(enabledLight);  
       
     }
     private void Update()
@@ -108,7 +107,7 @@ public class EngineController : MonoBehaviour
                 case keyTriggerType.right: val = inputX > 0 ? true : false; break;
                 case keyTriggerType.left: val = inputX > 0 ? true : false; break;
             }
-            light.gameObject.SetActive(val);
+            bulletLight.gameObject.SetActive(val);
         }
     }
 

@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Hit(Bullet bullet)
     {
-        Debug.Log("Player hit by " + bullet.gameObject.name); 
+        //Debug.Log("Player hit by " + bullet.gameObject.name); 
     }
     private void HandleMovement()
     {

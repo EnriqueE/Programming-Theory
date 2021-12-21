@@ -173,8 +173,8 @@ GameObject:
   - component: {fileID: 8305416278060190338}
   - component: {fileID: 8852524599816132924}
   - component: {fileID: 8415113774602081385}
-  - component: {fileID: -1839073305889195270}
   - component: {fileID: -6083743521558125688}
+  - component: {fileID: -1839073305889195270}
   m_Layer: 0
   m_Name: Spaceships_1
   m_TagString: Enemy
@@ -234,22 +234,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minRotationSpeed: {x: 0, y: 100, z: 0}
   maxRotationSpeed: {x: 0, y: 100, z: 0}
---- !u!114 &-1839073305889195270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8649467328292327480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f8697eecb99ddf4b917f048caae7d64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 500
-  enemyGameObject: {fileID: 8914718231150704607}
-  explosionPS: {fileID: 7840776208272053889}
-  explosionClip: {fileID: 8300000, guid: 89a25570c44ca4147b0c2d44cd240675, type: 3}
 --- !u!54 &-6083743521558125688
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -266,6 +250,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-1839073305889195270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8649467328292327480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8697eecb99ddf4b917f048caae7d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 50
+  enemyGameObject: {fileID: 8914718231150704607}
+  explosionPS: {fileID: 7840776208272053889}
+  explosionClip: {fileID: 8300000, guid: 89a25570c44ca4147b0c2d44cd240675, type: 3}
+  fromWaveNumber: 0
 --- !u!1 &8914718231150704607
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,11 +368,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+--- !u!1 &7763691985227379584 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7763691986800507220, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+  m_PrefabInstance: {fileID: 1741425364}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7763691985227379585 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7763691986800507221, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
   m_PrefabInstance: {fileID: 1741425364}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3530839382690137892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7763691985227379584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75d00c27caec9d44da424fedec1a8ffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponTriggerType: 1
+  bulletPrefab: {fileID: 2755228953234440296, guid: fe5aa7d8b90130c45827d02765c254da, type: 3}
+  damage: 1
+  bulletSpeed: 6
+  bulletDelay: 1
+  maxBullets: 5
+  startDelay: 7
+  amountToPool: 5
 --- !u!1001 &1937938602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -441,11 +467,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+--- !u!1 &7763691985433059838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7763691986800507220, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+  m_PrefabInstance: {fileID: 1937938602}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7763691985433059839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7763691986800507221, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
   m_PrefabInstance: {fileID: 1937938602}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2301471880192800733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7763691985433059838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75d00c27caec9d44da424fedec1a8ffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponTriggerType: 1
+  bulletPrefab: {fileID: 2755228953234440296, guid: fe5aa7d8b90130c45827d02765c254da, type: 3}
+  damage: 1
+  bulletSpeed: 6
+  bulletDelay: 1
+  maxBullets: 5
+  startDelay: 7
+  amountToPool: 5
 --- !u!1001 &1983794537
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -515,11 +566,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+--- !u!1 &7763691985494619197 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7763691986800507220, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+  m_PrefabInstance: {fileID: 1983794537}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7763691985494619196 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7763691986800507221, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
   m_PrefabInstance: {fileID: 1983794537}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7763547478835900341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7763691985494619197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75d00c27caec9d44da424fedec1a8ffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponTriggerType: 1
+  bulletPrefab: {fileID: 2755228953234440296, guid: fe5aa7d8b90130c45827d02765c254da, type: 3}
+  damage: 1
+  bulletSpeed: 6
+  bulletDelay: 1
+  maxBullets: 5
+  startDelay: 7
+  amountToPool: 5
 --- !u!1001 &2179850217152743600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -777,11 +853,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+--- !u!1 &2872011000707051111 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7763691986800507220, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+  m_PrefabInstance: {fileID: 5504879183549044531}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2872011000707051110 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7763691986800507221, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
   m_PrefabInstance: {fileID: 5504879183549044531}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5542661306978409773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2872011000707051111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75d00c27caec9d44da424fedec1a8ffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponTriggerType: 1
+  bulletPrefab: {fileID: 2755228953234440296, guid: fe5aa7d8b90130c45827d02765c254da, type: 3}
+  damage: 1
+  bulletSpeed: 6
+  bulletDelay: 1
+  maxBullets: 5
+  startDelay: 7
+  amountToPool: 5
 --- !u!1001 &7311752675826291630
 PrefabInstance:
   m_ObjectHideFlags: 0

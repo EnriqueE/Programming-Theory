@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace PathCreation.Examples
-{
-    public class SpawnController : MonoBehaviour
+using UnityEngine.Events;
+using PathCreation;
+using PathCreation.Examples;
+
+public class SpawnController : MonoBehaviour
     {
         public float boundaryHorizontal = 9.0f;
-        public GameObject enemiesContainer; 
+        public GameObject enemiesContainer;
         public float spawnPositionY = 8.0f;
         private float initTime;
         private float gameTime
@@ -20,10 +22,13 @@ namespace PathCreation.Examples
 
         public Wave[] waves;
         private int currentWave = 0;
-        
+
+
         [Serializable]
+
         public struct Wave
         {
+            public int id { get; set; }
             public string name; 
             public enum MovementType { infiniteDown, followPath }
             public Enemy enemy;
@@ -33,42 +38,44 @@ namespace PathCreation.Examples
             public int quantity;
             public float initDelay;
             public float rate;
-            public float speed; 
+            public float speed;
+            public float totalTime { get { return initDelay + (rate * quantity); } }            
+            public UnityEvent methodAtTotalLaunched;
+            public UnityEvent methodAtAllDestroyed;
+            public int deaths { get; set; }
         }
-
-
 
         private void Start()
         {
             initTime = Time.time;
-            LaunchWave(waves[0]); 
+            LaunchNextWave();
+            InitializeWaves();
         }
-        private void Update()
+        
+        public void InitializeWaves()
         {
-
-
-
-
-
-            /*  if(GameTime() - lastRockTime >= rock1Rate && quantitySpawned < quantity && rock1)
+            // set id 
+            for(int i = 0; i < waves.Length; i++)
             {
-                quantitySpawned++; 
-                Enemy rockInstance = Instantiate(rock1);
-                rockInstance.transform.position = new Vector3(
-                    Random.Range(-boundaryHorizontal, boundaryHorizontal),spawnPositionY,0);
-                lastRockTime = GameTime();
-            }*/
-        }
-
-        void   LaunchWave(Wave wave)
-        {
-            IEnumerator coroutine;
-            coroutine = LaunchWaveCoroutine(wave);
-            StartCoroutine(coroutine);  
-
+                waves[i].id = i;
+                waves[i].deaths = 0; 
+            }
             
         }
+        void   LaunchWave(Wave wave)
+        {
 
+            IEnumerator coroutine;
+            coroutine = LaunchWaveCoroutine(wave);
+            StartCoroutine(coroutine);             
+        }
+        public void LaunchNextWave()
+        {
+            if(currentWave < waves.Length)
+            {
+                LaunchWave(waves[currentWave++]);
+            }
+        }
         private IEnumerator LaunchWaveCoroutine(Wave wave)
         {
             // init Delay
@@ -76,8 +83,7 @@ namespace PathCreation.Examples
             {
                 yield return new WaitForSeconds(wave.initDelay);
             }
-
-
+           
             // Spawn Enemies
             if(wave.quantity > 0)
             {
@@ -87,7 +93,8 @@ namespace PathCreation.Examples
                     enemy.transform.position = new Vector3(
                         UnityEngine.Random.Range(-boundaryHorizontal, boundaryHorizontal),
                         spawnPositionY, 0);
-                    enemy.transform.rotation = wave.enemy.transform.rotation; 
+                    enemy.transform.rotation = wave.enemy.transform.rotation;
+                    enemy.fromWaveNumber = wave.id; 
                     if(wave.movementType == Wave.MovementType.followPath)
                     {
                         PathFollower pathFollower = enemy.gameObject.AddComponent<PathFollower>();
@@ -95,14 +102,33 @@ namespace PathCreation.Examples
                         pathFollower.pathCreator = wave.path;
                         pathFollower.speed = wave.speed; 
                         pathFollower.endOfPathInstruction = wave.endOfPathInstruction;
-                        
-
-                    }
+                    } else if (wave.movementType == Wave.MovementType.infiniteDown)
+                {
+                    MoveToPos moveToPos = enemy.gameObject.AddComponent<MoveToPos>();
+                    moveToPos.enableAtStart = true;
+                    moveToPos.newPos.y = -6.0f;
+                    moveToPos.totalTime = 10.0f;
+                    moveToPos.StartMoving(new Vector3(enemy.transform.position.x, -6, enemy.transform.position.z), 10.0f); 
+                }
                     yield return new WaitForSeconds(wave.rate);
                 }
             }
-           
+            if(wave.methodAtTotalLaunched.GetPersistentEventCount()>0)
+            {
+                wave.methodAtTotalLaunched.Invoke(); 
+            } 
             yield return null; 
         }
+        public void DeathOnWaveNumber(int waveNumber)
+        {
+            waves[waveNumber].deaths++;
+            if(waves[waveNumber].deaths == waves[waveNumber].quantity && waves[waveNumber].quantity > 0)
+            {
+                if (waves[waveNumber].methodAtAllDestroyed.GetPersistentEventCount() > 0)
+                {
+                    waves[waveNumber].methodAtAllDestroyed.Invoke();
+                }
+            }
+        }
     }
-}
+    

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.34974447, g: 0.34894192, b: 0.31385934, a: 1}
+  m_IndirectSpecularColor: {r: 0.34974468, g: 0.34894225, b: 0.31385946, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1232,10 +1232,10 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2755228953234440296, guid: fe5aa7d8b90130c45827d02765c254da, type: 3}
   damage: 10
   bulletSpeed: 8
-  bulletDelay: 0.2
+  bulletDelay: 0.1
   maxBullets: 0
   startDelay: 0
-  amounToPool: 5
+  amountToPool: 0
 --- !u!1 &971466639 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2872011000707051111, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
@@ -1260,7 +1260,7 @@ MonoBehaviour:
   bulletDelay: 0.3
   maxBullets: 5
   startDelay: 2
-  amounToPool: 20
+  amountToPool: 0
 --- !u!4 &974668421 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8305416278060190338, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
@@ -1430,7 +1430,7 @@ MonoBehaviour:
   bulletDelay: 0.3
   maxBullets: 5
   startDelay: 2
-  amounToPool: 20
+  amountToPool: 0
 --- !u!4 &1040482850 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e4342eb0485e8481d8c52811c80d2fe3, type: 3}
@@ -2106,7 +2106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1408948056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2123,15 +2123,60 @@ MonoBehaviour:
   enemiesContainer: {fileID: 1401327503}
   spawnPositionY: 8
   waves:
+  - name: Rocks Top Down
+    enemy: {fileID: 799128018081147304, guid: 99f83ff9210c740c7b8518d79563273c, type: 3}
+    path: {fileID: 0}
+    movementType: 0
+    endOfPathInstruction: 2
+    quantity: 5
+    initDelay: 2
+    rate: 0.5
+    speed: 1.5
+    methodAtTotalLaunched:
+      m_PersistentCalls:
+        m_Calls: []
+    methodAtAllDestroyed:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1408948056}
+          m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
+          m_MethodName: LaunchNextWave
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - name: Path S Ovnis Easy
     enemy: {fileID: -1839073305889195270, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
     path: {fileID: 8021171022761618445, guid: c707c8abcd3364766af290bba23e74f1, type: 3}
     movementType: 1
     endOfPathInstruction: 0
-    quantity: 20
+    quantity: 5
     initDelay: 2
     rate: 0.5
-    speed: 3
+    speed: 5
+    methodAtTotalLaunched:
+      m_PersistentCalls:
+        m_Calls: []
+    methodAtAllDestroyed:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1408948056}
+          m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
+          m_MethodName: LaunchNextWave
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!4 &1408948057
 Transform:
   m_ObjectHideFlags: 0
@@ -2170,7 +2215,7 @@ MonoBehaviour:
   bulletDelay: 0.3
   maxBullets: 5
   startDelay: 2
-  amounToPool: 20
+  amountToPool: 0
 --- !u!1001 &1564305713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2459,10 +2504,10 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2755228953234440296, guid: fe5aa7d8b90130c45827d02765c254da, type: 3}
   damage: 10
   bulletSpeed: 8
-  bulletDelay: 0.2
+  bulletDelay: 0.1
   maxBullets: 0
   startDelay: 0
-  amounToPool: 5
+  amountToPool: 0
 --- !u!1 &1847852658 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7763691985227379584, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
@@ -2487,7 +2532,7 @@ MonoBehaviour:
   bulletDelay: 0.3
   maxBullets: 5
   startDelay: 2
-  amounToPool: 20
+  amountToPool: 0
 --- !u!4 &1913780568 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3579361769974807842, guid: b1c3fb743351a8c4aabf2324123a6d53, type: 3}
@@ -2618,7 +2663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8415113774602081385, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8649467328292327480, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
       propertyPath: m_Name
@@ -2626,7 +2671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8649467328292327480, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}

@@ -11,50 +11,61 @@ public class Weapon : MonoBehaviour
     public float bulletDelay = 0.1f;
     // When weaponTriggerType is set to always maxBullets act as a max amount
     public int maxBullets = 0;
-    private int bulletsFired = 0; 
-    public float startDelay = 0.0f; 
+    private int bulletsFired = 0;
+    public float startDelay = 0.0f;
 
     // Dynamic Pool of objects, starts at amounToPool but increases if necessary
     private List<GameObject> pooledBullets;
-    public int amounToPool;
+    public int amountToPool;
     private GameObject pool;
 
     private float lastBulletTime;
     private bool fromPlayer = false;
-    private float initTime = 0.0f; 
+    private float initTime = 0.0f;
 
-    public enum WeaponTriggerType
-    {       
-        onFireKey,
-        always,
-        manual
-    }
-
+    // Trigger type to auto fire bullet
+    public enum WeaponTriggerType { onFireKey, always, manual }
     private void Start()
     {
 
-        initTime = Time.time; 
+        initTime = Time.time;
         // Check if weapon is attachet to the player
         if (transform.root.GetComponent<PlayerController>())
         {
-            fromPlayer = true; 
+            fromPlayer = true;
         }
 
         // Create pool of bullets
-        
+
         CreateBulletPool();
-        
+
     }
+    private void Update()
+    {
+        if (Time.time - lastBulletTime > bulletDelay)
+        {
+            if ((Input.GetKey(KeyCode.Space) && weaponTriggerType == WeaponTriggerType.onFireKey) ||
+                (weaponTriggerType == WeaponTriggerType.always &&
+                Time.time - initTime > startDelay &&
+                (bulletsFired < maxBullets || maxBullets == 0)))
+            {
+                FireBullet();
+            }
+        }
+    }
+
+    // Generates the pool of bulletPrefabs in amountToPool elements
     public virtual void CreateBulletPool()
     {
         pool = GameObject.Find("Pool");
         pooledBullets = new List<GameObject>();
 
-        for (int i = 0; i < amounToPool; i++)
+        for (int i = 0; i < amountToPool; i++)
         {
             AddBulletToPool();
         }
     }
+    // Increase new bulletPrefab in new element of the pool
     private void AddBulletToPool()
     {
         GameObject bulletInstance;
@@ -67,46 +78,38 @@ public class Weapon : MonoBehaviour
         bulletInstance.transform.Translate(gameObject.transform.position);
         pooledBullets.Add(bulletInstance);
     }
-    private void Update()
-    {
-        if (Time.time - lastBulletTime > bulletDelay)
-        {
-            if ( (Input.GetKey(KeyCode.Space) && weaponTriggerType == WeaponTriggerType.onFireKey) ||
-                (weaponTriggerType == WeaponTriggerType.always &&
-                Time.time - initTime > startDelay &&
-                (bulletsFired < maxBullets || maxBullets==0)))
-            {            
-                FireBullet();
-            }
-        }
-    }
+    // Shoot one bullet
     public void FireBullet()
     {
-        
+
+        // If pool is all busy, generates new element and increase the pool
         GameObject bullet = GetPooledBullet();
         if (bullet == null)
         {
             AddBulletToPool();
-            amounToPool++;
+            amountToPool++;
             bullet = GetPooledBullet();
         }
-        lastBulletTime = Time.time;
-        bullet.SetActive(true);
         bullet.transform.position = transform.position;
         bullet.transform.rotation = gameObject.transform.rotation;
-        bulletsFired++; 
-        
-        
+        bullet.SetActive(true);
+
+        lastBulletTime = Time.time;
+        bulletsFired++;
+
+
     }
+
+    // Get one object aviable in the pool
     public GameObject GetPooledBullet()
     {
-        for(int i =0; i < amounToPool; i++)
+        for (int i = 0; i < amountToPool; i++)
         {
-            if(!pooledBullets[i].activeInHierarchy)
+            if (!pooledBullets[i].activeInHierarchy)
             {
-                return pooledBullets[i];    
+                return pooledBullets[i];
             }
         }
-        return null; 
+        return null;
     }
 }

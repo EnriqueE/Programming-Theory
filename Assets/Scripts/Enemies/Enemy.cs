@@ -11,26 +11,38 @@ public class Enemy : MonoBehaviour
     private GameObject pool; 
 
     private AudioSource audioSource;
+    public int fromWaveNumber { get; set; }
+    private bool isDead = false; 
 
+    private void Awake()
+    {
+        fromWaveNumber = -1;
+    }
     private void Start()
     {
+        
         audioSource = GetComponent<AudioSource>();
         pool = GameObject.Find("Pool"); 
     }
     public void Hit(Bullet bullet)
     {
-
         
        // Reduce health of Enemy and Destroy it, when health <= 0
         health -= bullet.damage;
         if (health <= 0)
         {
-            Death(); 
+            if(!isDead) Death(); 
         }
     }
     public virtual void SilentDeath()
     {
+        isDead = true;
+        if (fromWaveNumber >= 0)
+        {
+            GameObject.Find("SpawnController").GetComponent<SpawnController>().DeathOnWaveNumber(fromWaveNumber); 
+        }
         Destroy(gameObject);
+        
     }
     public virtual void Death()
     {
@@ -45,6 +57,6 @@ public class Enemy : MonoBehaviour
         {
             explosionPS.SetActive(true);
         }        
-        Destroy(gameObject);
+        SilentDeath();
     }
 }

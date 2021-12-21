@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 2755228953234440308}
   - component: {fileID: 2755228953234440309}
   - component: {fileID: 2755228953234440310}
-  - component: {fileID: 5035609189185171060}
+  - component: {fileID: 8456279452589473671}
   m_Layer: 0
   m_Name: BulletPlaneFire
   m_TagString: Untagged
@@ -191,7 +191,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.000005, y: 1.1, z: 10.000002}
   m_Center: {x: 0, y: 0.000000020265588, z: 5.975082e-21}
---- !u!114 &5035609189185171060
+--- !u!114 &8456279452589473671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,11 +200,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2755228953234440296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2949f907bb9f9ea4b9345b6aa858d735, type: 3}
+  m_Script: {fileID: 11500000, guid: c1e9d01e7718d4bca80b0893b335b5d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  damage: 10
+  damage: 1
   bulletParticleSystem: {fileID: 8512355302929491988}
 --- !u!1 &8512355302929491988
 GameObject:

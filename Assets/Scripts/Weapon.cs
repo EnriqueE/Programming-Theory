@@ -4,52 +4,99 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] private WeaponTriggerType weaponTriggerType;
     public GameObject bulletPrefab;
-    public float damage;
-    public float speed;
+    public int damage;
+    public float bulletSpeed;
     public float bulletDelay = 0.1f;
-    public float inheritWeaponRotation; 
+    // When weaponTriggerType is set to always maxBullets act as a max amount
+    public int maxBullets = 0;
+    private int bulletsFired = 0; 
+    public float startDelay = 0.0f; 
 
-    public List<GameObject> pooledBullets;
+    // Dynamic Pool of objects, starts at amounToPool but increases if necessary
+    private List<GameObject> pooledBullets;
     public int amounToPool;
-    private GameObject pool; 
+    private GameObject pool;
 
     private float lastBulletTime;
+    private bool fromPlayer = false;
+    private float initTime = 0.0f; 
+
+    public enum WeaponTriggerType
+    {       
+        onFireKey,
+        always,
+        manual
+    }
 
     private void Start()
     {
-        pool = GameObject.Find("Pool"); 
-        pooledBullets = new List<GameObject>();
-        GameObject bulletInstance;
-        for (int i = 0; i < amounToPool; i++)
-        {         
-            bulletInstance = Instantiate(bulletPrefab, pool.transform );           
-            bulletInstance.name = "Bullet from " + gameObject.name + " of " + gameObject.transform.root.name; 
-            bulletInstance.SetActive(false);
-            bulletInstance.transform.Translate(gameObject.transform.position);
-            pooledBullets.Add(bulletInstance);
+
+        initTime = Time.time; 
+        // Check if weapon is attachet to the player
+        if (transform.root.GetComponent<PlayerController>())
+        {
+            fromPlayer = true; 
         }
 
+        // Create pool of bullets
         
+        CreateBulletPool();
+        
+    }
+    public virtual void CreateBulletPool()
+    {
+        pool = GameObject.Find("Pool");
+        pooledBullets = new List<GameObject>();
+
+        for (int i = 0; i < amounToPool; i++)
+        {
+            AddBulletToPool();
+        }
+    }
+    private void AddBulletToPool()
+    {
+        GameObject bulletInstance;
+        bulletInstance = Instantiate(bulletPrefab, pool.transform);
+        bulletInstance.name = "Bullet from " + gameObject.name + " of " + gameObject.transform.root.name;
+        bulletInstance.GetComponent<Bullet>().fromPlayer = fromPlayer;
+        bulletInstance.GetComponent<Bullet>().SetBulletSpeed(bulletSpeed);
+        bulletInstance.GetComponent<Bullet>().SetBulletDamage(damage);
+        bulletInstance.SetActive(false);
+        bulletInstance.transform.Translate(gameObject.transform.position);
+        pooledBullets.Add(bulletInstance);
     }
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Time.time - lastBulletTime > bulletDelay)
         {
-            if (Time.time - lastBulletTime > bulletDelay)
-            {
-                GameObject bullet = GetPooledBullet();
-                if (bullet != null)
-                {
-                    lastBulletTime = Time.time;
-                    bullet.SetActive(true);
-                    bullet.transform.position = transform.position;
-                    Debug.Log("Taking rotation from " + transform.name + " of " + transform.parent.name);
-                    bullet.transform.rotation = gameObject.transform.rotation;
-                    Debug.Log("rotation: " + bullet.transform.rotation);
-                }
+            if ( (Input.GetKey(KeyCode.Space) && weaponTriggerType == WeaponTriggerType.onFireKey) ||
+                (weaponTriggerType == WeaponTriggerType.always &&
+                Time.time - initTime > startDelay &&
+                (bulletsFired < maxBullets || maxBullets==0)))
+            {            
+                FireBullet();
             }
         }
+    }
+    public void FireBullet()
+    {
+        
+        GameObject bullet = GetPooledBullet();
+        if (bullet == null)
+        {
+            AddBulletToPool();
+            amounToPool++;
+            bullet = GetPooledBullet();
+        }
+        lastBulletTime = Time.time;
+        bullet.SetActive(true);
+        bullet.transform.position = transform.position;
+        bullet.transform.rotation = gameObject.transform.rotation;
+        bulletsFired++; 
+        
+        
     }
     public GameObject GetPooledBullet()
     {

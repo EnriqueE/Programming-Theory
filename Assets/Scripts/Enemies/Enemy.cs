@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 
     private AudioSource audioSource;
     public int fromWaveNumber { get; set; }
-    private bool isDead = false; 
+    private bool isDead = false;
 
     private void Awake()
     {

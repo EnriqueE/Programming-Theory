@@ -76,6 +76,7 @@ public class Weapon : MonoBehaviour
         bulletInstance.GetComponent<Bullet>().SetBulletDamage(damage);
         bulletInstance.SetActive(false);
         bulletInstance.transform.Translate(gameObject.transform.position);
+        bulletInstance.GetComponent<Bullet>().parentName = gameObject.transform.root.gameObject.name; 
         pooledBullets.Add(bulletInstance);
     }
     // Shoot one bullet

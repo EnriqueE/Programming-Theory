@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     public int damage = 1;
     public GameObject bulletParticleSystem;    
     public bool fromPlayer = false;
+    public string parentName { set; get; } 
 
     public void Start()
     {
@@ -57,18 +58,21 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (fromPlayer && other.GetComponentInParent<Enemy>())
-        {
+        string otherName = other.gameObject.transform.root.name;
+        if (parentName == "Player" && otherName != "Player" && other.GetComponentInParent<Enemy>())
+        {           
             other.GetComponentInParent<Enemy>().Hit(this);
-            Collision(other);
-        } else if (!fromPlayer && other.transform.root.GetComponent<PlayerController>())
+            Collision(other);            
+        }
+        if(parentName != "Player" && otherName == "Player" && other.transform.root.GetComponent<PlayerController>()) 
         {
             other.transform.root.GetComponent<PlayerController>().Hit(this);
-            Collision(other); 
+            Collision(other);
         }
     }
     public virtual void Collision(Collider other)
     {
+        
         if (bulletParticleSystem)
         {
             bulletParticleSystem.SetActive(true);
@@ -77,6 +81,7 @@ public class Bullet : MonoBehaviour
             bulletParticleSystem.transform.LookAt(transform.position);
         }
         DestroyBullet();
+       
     }
     public virtual void DestroyBullet()
     {

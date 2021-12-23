@@ -106,6 +106,7 @@ public class SpawnController : MonoBehaviour
 
                 Enemy enemy = Instantiate(wave.enemies[enemyIndex], enemiesContainer.transform);
 
+                enemy.gameObject.name = "Enemy " + i + " from wave " + wave.id + " (" + enemy.gameObject.name + ")";
                 enemy.transform.position = new Vector3(
                     UnityEngine.Random.Range(-boundaryHorizontal, boundaryHorizontal),
                     spawnPositionY, 0);

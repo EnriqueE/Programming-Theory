@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 3462452131682837933}
   - component: {fileID: 7163870927960234588}
   m_Layer: 0
-  m_Name: OrangeBullet
+  m_Name: OrangeCubeBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
 public class Bullet : MonoBehaviour
 {
     private float speed = 10.0f;
@@ -11,7 +10,6 @@ public class Bullet : MonoBehaviour
     private float boundaryHorizontal = 11.0f;
     public int damage = 1;
     public GameObject bulletParticleSystem;    
-    public bool fromPlayer = false;
     public string parentName { set; get; } 
 
     public void Start()

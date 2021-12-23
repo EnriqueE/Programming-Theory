@@ -20,7 +20,6 @@ public class Weapon : MonoBehaviour
     private GameObject pool;
 
     private float lastBulletTime;
-    private bool fromPlayer = false;
     private float initTime = 0.0f;
 
     // Trigger type to auto fire bullet
@@ -29,12 +28,7 @@ public class Weapon : MonoBehaviour
     {
 
         initTime = Time.time;
-        // Check if weapon is attachet to the player
-        if (transform.root.GetComponent<PlayerController>())
-        {
-            fromPlayer = true;
-        }
-
+     
         // Create pool of bullets
 
         CreateBulletPool();
@@ -71,7 +65,6 @@ public class Weapon : MonoBehaviour
         GameObject bulletInstance;
         bulletInstance = Instantiate(bulletPrefab, pool.transform);
         bulletInstance.name = "Bullet from " + gameObject.name + " of " + gameObject.transform.root.name;
-        bulletInstance.GetComponent<Bullet>().fromPlayer = fromPlayer;
         bulletInstance.GetComponent<Bullet>().SetBulletSpeed(bulletSpeed);
         bulletInstance.GetComponent<Bullet>().SetBulletDamage(damage);
         bulletInstance.SetActive(false);

@@ -16,7 +16,8 @@ public class Bullet : MonoBehaviour
     {
         if (bulletParticleSystem)
         {
-            bulletParticleSystem.transform.parent = GameObject.Find("Pool").transform;
+            //bulletParticleSystem.transform.parent = GameObject.Find("Pool").transform;
+            bulletParticleSystem.transform.parent = gameObject.transform.parent.transform;
             bulletParticleSystem.transform.position = Vector3.zero;
             bulletParticleSystem.transform.localScale = Vector3.one;
             bulletParticleSystem.transform.rotation = Quaternion.identity;
@@ -81,8 +82,28 @@ public class Bullet : MonoBehaviour
         DestroyBullet();
        
     }
+    private void TryToDestroyPool()
+    {
+        if (transform.parent.GetComponent<PoolController>() && transform.parent.GetComponent<PoolController>().destroyPending)
+        {
+            bool anyChildActive = false;
+            foreach (Transform child in transform.parent.gameObject.transform)
+            {
+                if (child.gameObject.activeSelf)
+                {
+                    anyChildActive = true;
+                }
+            }
+            if (!anyChildActive)
+            {
+                transform.parent.GetComponent<PoolController>().DestroyPool();
+            }
+        }
+    }
     public virtual void DestroyBullet()
     {
         gameObject.SetActive(false);
+        TryToDestroyPool();
+        
     }
 }

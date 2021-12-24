@@ -41,8 +41,18 @@ public class Enemy : MonoBehaviour
         {
             GameObject.Find("SpawnController").GetComponent<SpawnController>().DeathOnWaveNumber(fromWaveNumber); 
         }
+        DestroyPools(); 
         Destroy(gameObject);
         
+    }
+    private void DestroyPools()
+    {
+        Weapon[] weapons = GetComponentsInChildren<Weapon>();
+        foreach (Weapon weapon in weapons)
+        {
+            weapon.DestroyPool(); 
+        }
+
     }
     public virtual void Death()
     {

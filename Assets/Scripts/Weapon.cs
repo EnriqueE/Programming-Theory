@@ -17,7 +17,8 @@ public class Weapon : MonoBehaviour
     // Dynamic Pool of objects, starts at amounToPool but increases if necessary
     private List<GameObject> pooledBullets;
     public int amountToPool;
-    private GameObject pool;
+    private GameObject mainPool;
+    public GameObject pool { get; set; } 
 
     private float lastBulletTime;
     private float initTime = 0.0f;
@@ -47,11 +48,18 @@ public class Weapon : MonoBehaviour
             }
         }
     }
-
+    public void DestroyPool()
+    {
+        pool.GetComponent<PoolController>().destroyPending = true; 
+    }
     // Generates the pool of bulletPrefabs in amountToPool elements
     public virtual void CreateBulletPool()
     {
-        pool = GameObject.Find("Pool");
+        mainPool = GameObject.Find("Pool");
+        pool = new GameObject();
+        pool.name = "Pool of " + gameObject.name + " of " + gameObject.transform.parent.name;
+        pool.transform.parent =  mainPool.transform;        
+        pool.AddComponent<PoolController>(); 
         pooledBullets = new List<GameObject>();
 
         for (int i = 0; i < amountToPool; i++)
@@ -63,6 +71,7 @@ public class Weapon : MonoBehaviour
     private void AddBulletToPool()
     {
         GameObject bulletInstance;
+        
         bulletInstance = Instantiate(bulletPrefab, pool.transform);
         bulletInstance.name = "Bullet from " + gameObject.name + " of " + gameObject.transform.root.name;
         bulletInstance.GetComponent<Bullet>().SetBulletSpeed(bulletSpeed);

@@ -11,8 +11,8 @@ public class Rocket : MonoBehaviour
     public int damage = 50;
     public bool destroyOnBoundaries = false;
     public bool autoFire = false;
-
-
+    public Vector3 offset; 
+    public Quaternion rotation; 
     private bool fired = false;
     public GameObject target;
 
@@ -35,15 +35,17 @@ public class Rocket : MonoBehaviour
         if(target)
         {
 
-            //   Vector3 targetPosition = (target.transform.position - transform.position).normalized;
+               Vector3 targetPosition = target.transform.position - transform.position;
 
 
             //targetPosition.
-           // transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dir), Time.time * speed);
+            // transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dir), Time.time * speed);
 
 
             //   Debug.Log(targetDirection); 
-            //  transform.rotation = Quaternion.Euler(targetPosition); 
+            //  transform.rotation = Quaternion.LookRotation(targetPosition,offset);
+            rotation = Quaternion.LookRotation(targetPosition, offset);
+            transform.rotation = rotation; 
             //   Debug.DrawRay(transform.position, targetPosition, Color.green);
 
 
@@ -54,7 +56,7 @@ public class Rocket : MonoBehaviour
 
 
 
-           // transform.LookAt(target.transform, Vector3.forward);
+            //transform.LookRotation(target.transform, offset);
             //transform.Rotate(new Vector3(90, 0, 0));
 
 

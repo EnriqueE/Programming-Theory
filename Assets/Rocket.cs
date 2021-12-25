@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Rocket : MonoBehaviour
@@ -15,27 +13,62 @@ public class Rocket : MonoBehaviour
     public Quaternion rotation; 
     private bool fired = false;
     public GameObject target;
+    public Vector3 offset; 
 
-    
 
-    
+
+
     void Start()
     {
-        if(autoFire)
+        transform.rotation = Quaternion.identity; 
+        if (autoFire)
         {
-            Fire(); 
+            Fire();
         }
     }
-    
+
     // Update is called once per frame
     void Update()
     {
 
-        transform.Translate(Vector3.up * speed * Time.deltaTime); 
-        if(target)
+        transform.Translate(Vector3.up * speed * Time.deltaTime);
+        if (target)
         {
+            // Vector3 targetPosition = (target.transform.position  - transform.position).normalized;
+            // transform.rotation = Quaternion.Slerp(target.transform.rotation, Quaternion.LookRotation(targetPosition), rotationSpeed * Time.deltaTime);
 
+            //  Debug.DrawRay(transform.position, targetPosition, Color.green);
+            // Debug.Log(targetPosition);
+
+
+
+            //var targetPosition = target.transform.position;
+            //targetPosition.z = transform.position.z; //set targetPos y equal to mine, so I only look at my own plane
+            //var targetDir = Quaternion.LookRotation(targetPosition - transform.position);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, targetDir, rotationSpeed * Time.deltaTime);
+
+            // Vector3 lTargetDir = (target.transform.position - transform.position).normalized;
+            //lTargetDir.z = 0.0f;
+            // lTargetDir.x += 0.99f;
+
+            // transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lTargetDir), Time.time * rotationSpeed);
+
+
+
+            //  transform.LookAt(target.transform, Vector3.up);
+            // transform.Rotate(new Vector3(90, 0, 0));
+
+            //******
+            Debug.DrawRay(transform.position, target.transform.position);
+            transform.rotation = Quaternion.LookRotation(target.transform.position - transform.position, Vector3.up);
+
+
+
+
+<<<<<<< Updated upstream
                Vector3 targetPosition = target.transform.position - transform.position;
+=======
+>>>>>>> Stashed changes
 
 
             //targetPosition.
@@ -43,10 +76,15 @@ public class Rocket : MonoBehaviour
 
 
             //   Debug.Log(targetDirection); 
+<<<<<<< Updated upstream
             //  transform.rotation = Quaternion.LookRotation(targetPosition,offset);
             rotation = Quaternion.LookRotation(targetPosition, offset);
             transform.rotation = rotation; 
             //   Debug.DrawRay(transform.position, targetPosition, Color.green);
+=======
+            //  transform.rotation = Quaternion.Euler(targetPosition); 
+            //  
+>>>>>>> Stashed changes
 
 
             // transform.rotation = Quaternion.Lerp(transform.rotation, target.transform.rotation, Time.time * 0.01f);
@@ -56,7 +94,11 @@ public class Rocket : MonoBehaviour
 
 
 
+<<<<<<< Updated upstream
             //transform.LookRotation(target.transform, offset);
+=======
+            // transform.LookAt(target.transform, Vector3.forward);
+>>>>>>> Stashed changes
             //transform.Rotate(new Vector3(90, 0, 0));
 
 
@@ -81,8 +123,10 @@ public class Rocket : MonoBehaviour
               Debug.DrawRay(transform.position, targetPosition, Color.green);
               var targetDir = Quaternion.LookRotation(targetPosition - transform.position);
               transform.rotation = Quaternion.Slerp(transform.rotation, targetDir, rotationSpeed * Time.deltaTime);*/
-        } else {
-            FindTarget(); 
+        }
+        else
+        {
+            FindTarget();
         }
     }
     public void FindTarget()
@@ -92,26 +136,28 @@ public class Rocket : MonoBehaviour
         Transform parent = GameObject.Find("Enemies").transform;
         for (int i = 0; i < parent.childCount; i++)
         {
-            if(parent.GetChild(i).CompareTag("Enemy")) {
+            if (parent.GetChild(i).CompareTag("Enemy"))
+            {
                 Enemy enemy = parent.GetChild(i).GetComponent<Enemy>();
-                if(enemy.health > maxHealt && enemy.gameObject.activeInHierarchy)
+                if (enemy.health > maxHealt && enemy.gameObject.activeInHierarchy)
                 {
-                    maxHealt = enemy.health; 
-                    target = parent.GetChild(i).gameObject; 
+                    maxHealt = enemy.health;
+                    target = parent.GetChild(i).gameObject;
                 }
             }
         }
-        if(target)
+        if (target)
         {
-            Debug.Log("Target found: " + target.name); 
-        } else
+            Debug.Log("Target found: " + target.name);
+        }
+        else
         {
-            Debug.Log("No target Found"); 
+            Debug.Log("No target Found");
         }
     }
     public void Fire()
     {
         FindTarget();
-        fired = true; 
+        fired = true;
     }
 }

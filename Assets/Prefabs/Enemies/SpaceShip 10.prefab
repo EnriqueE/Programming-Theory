@@ -166,6 +166,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 6314100371273679405}
     m_Modifications:
     - target: {fileID: -2264148440841545462, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2264148440841545462, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 3462452131682837939, guid: 11151bf6913314834aa9585d231da9af, type: 3}
+    - target: {fileID: -2264148440841545462, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
       propertyPath: bulletDelay
       value: 0.2
       objectReference: {fileID: 0}

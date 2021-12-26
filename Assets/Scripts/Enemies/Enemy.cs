@@ -24,11 +24,10 @@ public class Enemy : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         pool = GameObject.Find("Pool"); 
     }
-    public void Hit(Bullet bullet)
+    public void Hit(int damage)
     {
-        
        // Reduce health of Enemy and Destroy it, when health <= 0
-        health -= bullet.damage;
+        health -= damage;
         if (health <= 0)
         {
             if(!isDead) Death(); 
@@ -50,7 +49,10 @@ public class Enemy : MonoBehaviour
         Weapon[] weapons = GetComponentsInChildren<Weapon>();
         foreach (Weapon weapon in weapons)
         {
-            weapon.DestroyPool(); 
+            if (weapon.gameObject.GetComponent<PoolController>())
+            {
+                weapon.gameObject.GetComponent<PoolController>().MarkToDestroy();
+            }
         }
 
     }
@@ -69,4 +71,5 @@ public class Enemy : MonoBehaviour
         }        
         SilentDeath();
     }
+  
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7763691986800507221}
   - component: {fileID: -2264148440841545462}
+  - component: {fileID: 3301348011711204393}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -44,10 +45,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponTriggerType: 1
-  bulletPrefab: {fileID: 2755228953234440296, guid: fe5aa7d8b90130c45827d02765c254da, type: 3}
+  prefab: {fileID: 0}
   damage: 1
-  bulletSpeed: 3
-  bulletDelay: 1
-  maxBullets: 0
+  speed: 0
+  delay: 0.1
+  maxElements: 0
   startDelay: 0
-  amountToPool: 10
+--- !u!114 &3301348011711204393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7763691986800507220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f53ad4fca898e49139f1230382274a8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyPending: 0
+  startPoolSize: 5
+  damage: 0
+  speed: 0

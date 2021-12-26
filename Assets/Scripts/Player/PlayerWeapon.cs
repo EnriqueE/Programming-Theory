@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class PlayerWeapon : Weapon
 {
-    public override void CreateBulletPool()
-    {
-        
-    }
+    
 }

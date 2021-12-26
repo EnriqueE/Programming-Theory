@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float speed = 10.0f;
+    public float speed;
     private float boundaryTop = 9.0f;
     private float boundaryBottom = -5.0f;
     private float boundaryHorizontal = 11.0f;
-    public int damage = 1;
+    public int damage;
     public GameObject bulletParticleSystem;    
     public string parentName { set; get; } 
 
@@ -27,27 +27,31 @@ public class Bullet : MonoBehaviour
     {
 
         // Bullet movement
-        transform.position += transform.TransformDirection(Vector3.forward * speed  * Time.deltaTime);
-
+        transform.position += transform.TransformDirection(Vector3.up * speed  * Time.deltaTime);
 
         // Destroy if out of boundary
         if (transform.position.y > boundaryTop ||
             transform.position.x > boundaryHorizontal ||
             transform.position.x < -boundaryHorizontal ||
             transform.position.y < boundaryBottom)
+        {
+        
             DestroyBullet();
+
+        }
 
 
     }
-    public void SetBulletSpeed(float newSpeed)
+    public void SetSpeed(float newSpeed)
     {
         if(newSpeed>0)
         {
             speed = newSpeed;
+           // Debug.Log("New Speeed: " + newSpeed + " speed: " + speed); 
         }
         
     }
-    public void SetBulletDamage(int newDamage)
+    public void SetDamage(int newDamage)
     {
         if(damage > 0)
         {
@@ -60,12 +64,12 @@ public class Bullet : MonoBehaviour
         string otherName = other.gameObject.transform.root.name;
         if (parentName == "Player" && otherName != "Player" && other.GetComponentInParent<Enemy>())
         {           
-            other.GetComponentInParent<Enemy>().Hit(this);
+            other.GetComponentInParent<Enemy>().Hit(damage);
             Collision(other);            
         }
         if(parentName != "Player" && otherName == "Player" && other.transform.root.GetComponent<PlayerController>()) 
         {
-            other.transform.root.GetComponent<PlayerController>().Hit(this);
+            other.transform.root.GetComponent<PlayerController>().Hit(damage);
             Collision(other);
         }
     }
@@ -84,7 +88,8 @@ public class Bullet : MonoBehaviour
     }
     private void TryToDestroyPool()
     {
-        if (transform.parent.GetComponent<PoolController>() && transform.parent.GetComponent<PoolController>().destroyPending)
+        PoolController poolController = transform.parent.GetComponent<PoolController>(); 
+        if (poolController && poolController.isPendingDestroy())
         {
             bool anyChildActive = false;
             foreach (Transform child in transform.parent.gameObject.transform)
@@ -96,7 +101,7 @@ public class Bullet : MonoBehaviour
             }
             if (!anyChildActive)
             {
-                transform.parent.GetComponent<PoolController>().DestroyPool();
+                poolController.DestroyPool();
             }
         }
     }

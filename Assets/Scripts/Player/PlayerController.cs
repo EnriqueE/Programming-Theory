@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    public void Hit(Bullet bullet)
+    public void Hit(int damage)
     {
         //Debug.Log("Player hit by " + bullet.gameObject.name); 
     }

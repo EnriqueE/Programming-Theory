@@ -2,117 +2,67 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PoolController))]
 public class Weapon : MonoBehaviour
 {
     [SerializeField] private WeaponTriggerType weaponTriggerType;
-    public GameObject bulletPrefab;
+    public GameObject prefab;
     public int damage;
-    public float bulletSpeed;
-    public float bulletDelay = 0.1f;
+    public float speed;
+    public float delay = 0.1f;
     // When weaponTriggerType is set to always maxBullets act as a max amount
-    public int maxBullets = 0;
-    private int bulletsFired = 0;
+    public int maxElements = 0;
+    private int elementsFired = 0;
     public float startDelay = 0.0f;
+     
+    private float lastFireTime;
 
-    // Dynamic Pool of objects, starts at amounToPool but increases if necessary
-    private List<GameObject> pooledBullets;
-    public int amountToPool;
-    private GameObject mainPool;
-    public GameObject pool { get; set; } 
-
-    private float lastBulletTime;
+    private PoolController poolController;
     private float initTime = 0.0f;
 
     // Trigger type to auto fire bullet
-    public enum WeaponTriggerType { onFireKey, always, manual }
+    public enum WeaponTriggerType {  always, manual, onFireKey, onRightAltKey, onLeftControlKey }
     private void Start()
     {
-
+        Debug.Log("Speed: " + speed); 
         initTime = Time.time;
-     
-        // Create pool of bullets
 
-        CreateBulletPool();
+        // Create pool of bullets
+        poolController = GetComponent<PoolController>(); 
+        poolController.CreatePool(prefab, damage, speed, maxElements);
+       // Debug.Log("Creating Pool: " + damage + " , " + speed); 
+            
 
     }
     private void Update()
     {
-        if (Time.time - lastBulletTime > bulletDelay)
+        if (Time.time - lastFireTime > delay)
         {
             if ((Input.GetKey(KeyCode.Space) && weaponTriggerType == WeaponTriggerType.onFireKey) ||
+                (Input.GetKey(KeyCode.RightAlt) && weaponTriggerType == WeaponTriggerType.onRightAltKey) ||
+                (Input.GetKey(KeyCode.LeftControl) && weaponTriggerType == WeaponTriggerType.onLeftControlKey) ||
                 (weaponTriggerType == WeaponTriggerType.always &&
                 Time.time - initTime > startDelay &&
-                (bulletsFired < maxBullets || maxBullets == 0)))
+                (elementsFired < maxElements || maxElements == 0)))
             {
-                FireBullet();
+                FireElement();
             }
         }
     }
-    public void DestroyPool()
-    {
-        pool.GetComponent<PoolController>().destroyPending = true; 
-    }
-    // Generates the pool of bulletPrefabs in amountToPool elements
-    public virtual void CreateBulletPool()
-    {
-        mainPool = GameObject.Find("Pool");
-        pool = new GameObject();
-        pool.name = "Pool of " + gameObject.name + " of " + gameObject.transform.parent.name;
-        pool.transform.parent =  mainPool.transform;        
-        pool.AddComponent<PoolController>(); 
-        pooledBullets = new List<GameObject>();
-
-        for (int i = 0; i < amountToPool; i++)
-        {
-            AddBulletToPool();
-        }
-    }
-    // Increase new bulletPrefab in new element of the pool
-    private void AddBulletToPool()
-    {
-        GameObject bulletInstance;
-        
-        bulletInstance = Instantiate(bulletPrefab, pool.transform);
-        bulletInstance.name = "Bullet from " + gameObject.name + " of " + gameObject.transform.root.name;
-        bulletInstance.GetComponent<Bullet>().SetBulletSpeed(bulletSpeed);
-        bulletInstance.GetComponent<Bullet>().SetBulletDamage(damage);
-        bulletInstance.SetActive(false);
-        bulletInstance.transform.Translate(gameObject.transform.position);
-        bulletInstance.GetComponent<Bullet>().parentName = gameObject.transform.root.gameObject.name; 
-        pooledBullets.Add(bulletInstance);
-    }
+   
     // Shoot one bullet
-    public void FireBullet()
+    public void FireElement()
     {
 
-        // If pool is all busy, generates new element and increase the pool
-        GameObject bullet = GetPooledBullet();
-        if (bullet == null)
+        GameObject bullet = poolController.GetOne(); 
+        if(bullet)
         {
-            AddBulletToPool();
-            amountToPool++;
-            bullet = GetPooledBullet();
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = gameObject.transform.rotation;
+            bullet.SetActive(true);
+
+            lastFireTime = Time.time;
+            elementsFired++;
         }
-        bullet.transform.position = transform.position;
-        bullet.transform.rotation = gameObject.transform.rotation;
-        bullet.SetActive(true);
-
-        lastBulletTime = Time.time;
-        bulletsFired++;
-
-
-    }
-
-    // Get one object aviable in the pool
-    public GameObject GetPooledBullet()
-    {
-        for (int i = 0; i < amountToPool; i++)
-        {
-            if (!pooledBullets[i].activeInHierarchy)
-            {
-                return pooledBullets[i];
-            }
-        }
-        return null;
     }
 }

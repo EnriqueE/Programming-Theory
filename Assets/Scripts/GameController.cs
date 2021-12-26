@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -29,13 +30,18 @@ public class GameController : MonoBehaviour
             return m_UserName; 
         }
     }
-    
+
+    public Text debugGameStateText;
+    public Text debugGeneralPurposeText1;
+    public Text debugGeneralPurposeText2;
+    public Text debugGeneralPurposeText3;
+
     public class Record
     {
         public string username;
         public int score; 
     }
-    public GameState gameState = GameState.intro;
+    private GameState gameState = GameState.intro;
     public enum GameState { intro, startMenu, play, gameOver }
     
     private void Awake()
@@ -51,5 +57,18 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Game"); 
+    }
+    public void SetGameState(GameState newGameState)
+    {
+        gameState = newGameState;
+        if(debugGameStateText) {
+            debugGameStateText.text = gameState.ToString(); 
+        }
+        
+    }
+    public GameState GetGameSate()
+    {
+        return gameState; 
+        
     }
 }

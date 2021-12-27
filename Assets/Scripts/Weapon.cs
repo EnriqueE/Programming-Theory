@@ -58,13 +58,14 @@ public class Weapon : MonoBehaviour
         if(element)
         {
             Bullet bullet = element.GetComponent<Bullet>();
+            // Set position and rotation 
             element.transform.position = transform.position;
             element.transform.rotation = gameObject.transform.rotation;
+            // Transfer speed and damage from weapon 
             bullet.SetDamage(damage);
             bullet.SetSpeed(speed);
-            // bullet.transform.rotation = Quaternion.identity;
-            bullet.transform.eulerAngles = new Vector3(
-                0, 0, bullet.transform.eulerAngles.z); 
+            // Prevent rotation in x y, only z allowed
+            bullet.transform.eulerAngles = new Vector3(0, 0, bullet.transform.eulerAngles.z); 
             bullet.parentName = gameObject.transform.root.gameObject.name;
             element.SetActive(true);
 

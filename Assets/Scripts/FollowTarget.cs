@@ -67,8 +67,10 @@ public class FollowTarget : MonoBehaviour
     {
         initTime = Time.time;
         followEnabled = true;
-        target = m_target; 
+        target = m_target;
+       
     }
+
     public void StartFollow(GameObject m_target, float m_rotationSpeed)
     {
         rotationSpeed = m_rotationSpeed;

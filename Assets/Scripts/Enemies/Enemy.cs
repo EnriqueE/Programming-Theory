@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     public GameObject enemyGameObject; 
     public GameObject explosionPS;
     public AudioClip explosionClip;
-    private GameObject pool; 
+    private GameObject pool;
 
     private AudioSource audioSource;
     public int fromWaveNumber { get; set; }
@@ -20,14 +20,12 @@ public class Enemy : MonoBehaviour
     }
     private void Start()
     {
-        
         audioSource = GetComponent<AudioSource>();
         pool = GameObject.Find("Pool"); 
     }
     public void Hit(int damage)
     {
         // Reduce health of Enemy and Destroy it, when health <= 0
-        Debug.Log("Enemy hit with " + damage);
         health -= damage;
         if (health <= 0)
         {
@@ -73,5 +71,6 @@ public class Enemy : MonoBehaviour
         }        
         SilentDeath();
     }
+
   
 }

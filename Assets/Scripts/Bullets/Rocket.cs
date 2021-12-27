@@ -26,16 +26,18 @@ public class Rocket : Bullet
         }
         for (int i = 0; i < parent.transform.childCount; i++)
         {
-            if (parent.transform.GetChild(i).CompareTag("Enemy"))
+            Transform child = parent.transform.GetChild(i); 
+            if (child.CompareTag("Enemy") )
             {
-                Enemy enemy = parent.transform.GetChild(i).GetComponent<Enemy>();
+                Enemy enemy = child.GetComponent<Enemy>();
                 if (enemy.health > maxHealt && enemy.gameObject.activeInHierarchy)
                 {
                     maxHealt = enemy.health;
-                    m_target = parent.transform.GetChild(i).gameObject;
+                    m_target = child.gameObject;
                 }               
             }
         }
+      
         return m_target;
     }
     public void FindTargetAndFollow()

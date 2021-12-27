@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 1906116922878423166}
   m_Layer: 0
   m_Name: Rock 02
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   explosionPS: {fileID: 0}
   explosionClip: {fileID: 0}
   speed: 1.5
-  destroyWhenReachY: -5
+  destroyWhenReachY: -6
 --- !u!54 &1906116922878423166
 Rigidbody:
   m_ObjectHideFlags: 0

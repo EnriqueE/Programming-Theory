@@ -82,7 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   followEnabled: 1
-  rotationSpeed: 2
+  rotationSpeed: 3
   delayTime: 0.5
   lostTargetEvent:
     m_PersistentCalls:

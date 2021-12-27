@@ -5,22 +5,15 @@ public class Rocket : Bullet
     public float lifeTime = 5.0f;
     public float explosionRadius = 1.0f;
     public bool destroyOnBoundaries = false;
-    public bool autoFire = false;
-    private bool fired = false;
-    public GameObject target;
-
-
-
+    private GameObject target;
 
     new void Start()
     {
-        transform.rotation = Quaternion.identity; 
-        if (autoFire)
-        {
-            StartFollow();
-        }
+        transform.rotation = Quaternion.identity;        
+        StartFollow();
+        base.Start();
+       
     }
-   
    
     public GameObject FindTarget()
     {
@@ -54,7 +47,6 @@ public class Rocket : Bullet
     {
         target = FindTarget();
         if (target) GetComponent<FollowTarget>().StartFollow(target);
-        fired = true;
     }
    
 

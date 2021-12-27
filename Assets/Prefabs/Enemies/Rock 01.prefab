@@ -170,7 +170,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 347b23290150e1249be4e12eb8f2d5ac, type: 3}
   m_PrefabInstance: {fileID: 799128017128579457}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &799128016876463372
+--- !u!64 &6140542197484545042
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,7 +178,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564774470343974096}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1

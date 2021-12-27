@@ -1223,11 +1223,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2264148440841545462, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
       propertyPath: speed
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -2264148440841545462, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
       propertyPath: damage
-      value: 50
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: -2264148440841545462, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
       propertyPath: prefab
@@ -1489,11 +1489,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 799128018081147305, guid: 99f83ff9210c740c7b8518d79563273c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.48
+      value: -0.59
       objectReference: {fileID: 0}
     - target: {fileID: 799128018081147305, guid: 99f83ff9210c740c7b8518d79563273c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.45
+      value: 5.66
       objectReference: {fileID: 0}
     - target: {fileID: 799128018081147305, guid: 99f83ff9210c740c7b8518d79563273c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2335,6 +2335,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 160404822}
     m_Modifications:
     - target: {fileID: -2264148440841545462, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -2264148440841545462, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
       propertyPath: damage
       value: 10
       objectReference: {fileID: 0}
@@ -3174,6 +3178,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 160404822}
     m_Modifications:
+    - target: {fileID: -2264148440841545462, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -2264148440841545462, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
       propertyPath: damage
       value: 10

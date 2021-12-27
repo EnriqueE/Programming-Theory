@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
     public enum WeaponTriggerType {  always, manual, onFireKey, onRightAltKey, onLeftControlKey }
     private void Start()
     {
-        Debug.Log("Speed: " + speed); 
+        //Debug.Log("Speed: " + speed); 
         initTime = Time.time;
 
         // Create pool of bullets
@@ -54,12 +54,17 @@ public class Weapon : MonoBehaviour
     public void FireElement()
     {
 
-        GameObject bullet = poolController.GetOne(); 
-        if(bullet)
+        GameObject element = poolController.GetOne(); 
+        if(element)
         {
-            bullet.transform.position = transform.position;
-            bullet.transform.rotation = gameObject.transform.rotation;
-            bullet.SetActive(true);
+            Bullet bullet = element.GetComponent<Bullet>();
+            element.transform.position = transform.position;
+            element.transform.rotation = gameObject.transform.rotation;
+            bullet.SetDamage(damage);
+            bullet.SetSpeed(speed);
+            bullet.transform.rotation = Quaternion.identity; 
+            bullet.parentName = gameObject.transform.root.gameObject.name;
+            element.SetActive(true);
 
             lastFireTime = Time.time;
             elementsFired++;

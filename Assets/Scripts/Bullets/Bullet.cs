@@ -5,10 +5,10 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed;
+    public int damage;
     private float boundaryTop = 9.0f;
     private float boundaryBottom = -5.0f;
-    private float boundaryHorizontal = 11.0f;
-    public int damage;
+    private float boundaryHorizontal = 11.0f;    
     public GameObject bulletParticleSystem;    
     public string parentName { set; get; } 
 

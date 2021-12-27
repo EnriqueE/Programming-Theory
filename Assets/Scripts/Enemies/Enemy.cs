@@ -26,7 +26,8 @@ public class Enemy : MonoBehaviour
     }
     public void Hit(int damage)
     {
-       // Reduce health of Enemy and Destroy it, when health <= 0
+        // Reduce health of Enemy and Destroy it, when health <= 0
+        Debug.Log("Enemy hit with " + damage);
         health -= damage;
         if (health <= 0)
         {

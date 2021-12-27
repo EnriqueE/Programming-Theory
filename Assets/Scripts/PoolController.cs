@@ -61,19 +61,6 @@ public class PoolController : MonoBehaviour
         GameObject prefabInstance;
         prefabInstance = Instantiate(prefab, pool.transform);
         prefabInstance.name = "Element of " + gameObject.name + " of " + gameObject.transform.root.name;
-        if(prefabInstance.GetComponent<Bullet>())
-        {
-            prefabInstance.GetComponent<Bullet>().SetSpeed(speed);
-            prefabInstance.GetComponent<Bullet>().SetDamage(damage);
-            prefabInstance.GetComponent<Bullet>().parentName = gameObject.transform.root.gameObject.name;
-        }
-        if (prefabInstance.GetComponent<Rocket>()) {
-            prefabInstance.GetComponent<Rocket>().SetSpeed(speed);
-            prefabInstance.GetComponent<Rocket>().SetDamage(damage);
-            prefabInstance.GetComponent<Rocket>().parentName = gameObject.transform.root.gameObject.name;
-
-        }
-
         prefabInstance.transform.Translate(gameObject.transform.position);        
         prefabInstance.SetActive(false);
         elements.Add(prefabInstance);

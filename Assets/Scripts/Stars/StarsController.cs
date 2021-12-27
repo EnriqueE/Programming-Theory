@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class StarsController : MonoBehaviour
 {
+    public float globalSpeed = 1.0f;
     [SerializeField] private Star[] stars;
+    
 
     [Serializable]
     public struct Star
@@ -23,8 +25,8 @@ public class StarsController : MonoBehaviour
         foreach(Star star in stars)
         {
 
-            InstantiateStar(star.starPS, star.size, star.speed, star.quantity, star.origin, star.destination, star.spawnPosition);
-            InstantiateStar(star.starPS, star.size, star.speed, star.quantity, star.origin - star.destination, star.destination, star.spawnPosition);
+            InstantiateStar(star.starPS, star.size, star.speed * globalSpeed, star.quantity, star.origin, star.destination, star.spawnPosition);
+            InstantiateStar(star.starPS, star.size, star.speed * globalSpeed, star.quantity, star.origin - star.destination, star.destination, star.spawnPosition);
            
         }
     }

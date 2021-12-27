@@ -65,9 +65,10 @@ public class Enemy : MonoBehaviour
         }
 
         // Explosion Particle system
-        explosionPS.transform.parent = pool.transform; 
+        
         if (explosionPS && explosionPS.GetComponent<ParticleSystem>())
         {
+            explosionPS.transform.parent = pool.transform;
             explosionPS.SetActive(true);
         }        
         SilentDeath();

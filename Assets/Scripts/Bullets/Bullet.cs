@@ -27,7 +27,8 @@ public class Bullet : MonoBehaviour
     {
 
         // Bullet movement
-        transform.position += transform.TransformDirection(Vector3.up * speed  * Time.deltaTime);
+        //transform.position += transform.TransformDirection(Vector3.up * speed  * Time.deltaTime);
+        transform.position += transform.up * speed * Time.deltaTime; 
 
         // Destroy if out of boundary
         if (transform.position.y > boundaryTop ||

@@ -166,7 +166,7 @@ public class SpawnController : MonoBehaviour
         if (prefab)
         {
             GameObject rewardInstance = Instantiate(weaponRewardPrefab);
-            rewardInstance.transform.position = m_lastObject.transform.position;
+            rewardInstance.transform.position = m_lastObject.transform.position; 
         }
         
 

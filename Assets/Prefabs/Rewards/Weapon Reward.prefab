@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4699515183913008215}
   - component: {fileID: 4050881969601310670}
-  - component: {fileID: 2025241116}
+  - component: {fileID: -8446993692910787845}
   m_Layer: 0
   m_Name: Weapon Reward
   m_TagString: Reward
@@ -47,7 +47,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2025241116
+--- !u!114 &-8446993692910787845
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,6 +61,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnabled: 1
   speed: {x: 1, y: 0.1}
+  horiztonalBoundary: 9
+  bottomBoundary: -5
+  timeAlive: 999
 --- !u!1 &4699515184088203630
 GameObject:
   m_ObjectHideFlags: 0

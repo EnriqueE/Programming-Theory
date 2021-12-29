@@ -22,7 +22,7 @@ public class SpawnController : MonoBehaviour
     public struct Wave
     {
         public enum MovementType { infiniteDown, followPath }
-        public enum RewardType { none, weaponReward }
+        public enum RewardType { none, random, weaponReward }
         public int id { get; set; }
         public string name;
         public bool enabled;               

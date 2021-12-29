@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Hit(int damage)
     {
+        GetComponent<CameraShake>().Shake(); 
         //Debug.Log("Player hit by " + bullet.gameObject.name); 
     }
     private void HandleMovement()

@@ -11,7 +11,12 @@ public class RewardController : MonoBehaviour
     public float timeAlive = 10.0f;
     public ParticleSystem collectParticleSystem;
     public float delayToDisapearWhenCollect = 0.4f;
-    public float disapearingTimeWhenCollect = 0.2f; 
+    public float disapearingTimeWhenCollect = 0.2f;
+    private bool disapearing = false; 
+    private float disapearingStartTime;
+    private bool collected = false;
+    public float appearingTime = 0.5f;
+    private float rate; 
 
 
     private float initTime;
@@ -29,41 +34,78 @@ public class RewardController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         string name = other.transform.root.name; 
-        if(name == "Player")
-
+        if(name == "Player" && !collected)
         {
             Collect(); 
         }
     }
     public void Collect()
     {
+        collected = true; 
         collectParticleSystem.Play();
-        Debug.Log("Collect"); 
+        GetComponent<AudioSource>().Play(); 
+        Death();
+       
     }
+    
     private void Death()
     {
-        Destroy(gameObject); 
+        
+        disapearing = true;
+        disapearingStartTime = Time.time; 
+
     }
     void Update()
     {
-        if(Time.time - initTime > timeAlive)
+
+        if(disapearing)
         {
-            Death(); 
-        }
-        if(isEnabled)
+
+            if(Time.time > disapearingStartTime + delayToDisapearWhenCollect)
+            {
+                rate = (float)Elastic.EaseIn((Time.time - disapearingStartTime - delayToDisapearWhenCollect) / (disapearingTimeWhenCollect), 0, 1, 1);
+                
+                if (rate <= 1)
+                {
+                    transform.localScale = new Vector3(1-rate, 1-rate, 1-rate);   
+                } else
+                {
+                    Destroy(gameObject); 
+                }
+            }
+        } else
         {
-            transform.Translate(vectorMovement * speed.x * Time.deltaTime);
-            transform.Translate(Vector3.down * speed.y * Time.deltaTime);
-            if(transform.position.x > horiztonalBoundary)
+            if (Time.time - initTime > timeAlive)
             {
-                vectorMovement =  Vector3.left;
-                transform.position = new Vector3(horiztonalBoundary, transform.position.y, 0); 
-            } else if(transform.position.x < -horiztonalBoundary)
+                Death();
+            }
+            if (isEnabled)
             {
-                vectorMovement = Vector3.right;
-                transform.position = new Vector3(-horiztonalBoundary, transform.position.y, 0);
+                if(Time.time < initTime + appearingTime)
+                {
+                    
+                    rate = (float)Cubic.EaseOut((Time.time - initTime) / appearingTime, 0, 1, 1);
+                    Debug.Log(rate);
+                    transform.localScale = new Vector3(rate, rate, rate);
+                }
+                
+
+
+                transform.Translate(vectorMovement * speed.x * Time.deltaTime);
+                transform.Translate(Vector3.down * speed.y * Time.deltaTime);
+                if (transform.position.x > horiztonalBoundary)
+                {
+                    vectorMovement = Vector3.left;
+                    transform.position = new Vector3(horiztonalBoundary, transform.position.y, 0);
+                }
+                else if (transform.position.x < -horiztonalBoundary)
+                {
+                    vectorMovement = Vector3.right;
+                    transform.position = new Vector3(-horiztonalBoundary, transform.position.y, 0);
+                }
             }
         }
+       
         
     }
 }

@@ -11,26 +11,29 @@ public class SpawnController : MonoBehaviour
     public float boundaryHorizontal = 9.0f;
     public GameObject enemiesContainer;
     public float spawnPositionY = 8.0f;
-      
+    [SerializeField] private GameObject weaponRewardPrefab; 
 
     public Wave[] waves;
     private int currentWave = 0;
-
+    
 
     [Serializable]
 
     public struct Wave
     {
+        public enum MovementType { infiniteDown, followPath }
+        public enum RewardType { none, weaponReward }
         public int id { get; set; }
         public string name;
         public bool enabled;               
-        public enum MovementType { infiniteDown, followPath }
+        
         public Enemy[] enemies;
         public bool randomEnemies;
-        public int currentEnemy { get; set; } 
-        public PathCreator path;            
+        public int currentEnemy { get; set; }        
         public MovementType movementType;
+        public PathCreator path;
         public EndOfPathInstruction endOfPathInstruction;
+        public RewardType reward; 
         public int quantity;
         public float initDelay;
         public float rate;
@@ -38,6 +41,7 @@ public class SpawnController : MonoBehaviour
         public float totalTime { get { return initDelay + (rate * quantity); } }            
         public UnityEvent methodAtTotalLaunched;
         public UnityEvent methodAtAllDestroyed;
+        
         public int deaths { get; set; }
     }
 
@@ -137,16 +141,35 @@ public class SpawnController : MonoBehaviour
         } 
         yield return null; 
     }
-    public void DeathOnWaveNumber(int waveNumber)
+    public void DeathOnWaveNumber(int waveNumber, GameObject lastObject)
     {
         waves[waveNumber].deaths++;
         if(waves[waveNumber].deaths == waves[waveNumber].quantity && waves[waveNumber].quantity > 0)
         {
-            if (waves[waveNumber].methodAtAllDestroyed.GetPersistentEventCount() > 0)
+
+            CreateReward(waves[waveNumber].reward, lastObject); 
+            if(waves[waveNumber].methodAtAllDestroyed.GetPersistentEventCount() > 0 )
             {
                 waves[waveNumber].methodAtAllDestroyed.Invoke();
             }
         }
+    }
+    public void CreateReward(Wave.RewardType m_reward, GameObject m_lastObject)
+    {
+        GameObject prefab = null; 
+        switch(m_reward)
+        {
+            case Wave.RewardType.weaponReward:
+                prefab = weaponRewardPrefab; 
+                break; 
+        }
+        if (prefab)
+        {
+            GameObject rewardInstance = Instantiate(weaponRewardPrefab);
+            rewardInstance.transform.position = m_lastObject.transform.position;
+        }
+        
+
     }
 }
     

@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1623875315508023294
 Transform:
   m_ObjectHideFlags: 0
@@ -83,7 +83,7 @@ MonoBehaviour:
   target: {fileID: 0}
   followEnabled: 1
   rotationSpeed: 3
-  delayTime: 0.5
+  delayTime: 0.2
   lostTargetEvent:
     m_PersistentCalls:
       m_Calls:

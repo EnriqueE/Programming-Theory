@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
         isDead = true;
         if (fromWaveNumber >= 0)
         {
-            GameObject.Find("SpawnController").GetComponent<SpawnController>().DeathOnWaveNumber(fromWaveNumber); 
+            GameObject.Find("SpawnController").GetComponent<SpawnController>().DeathOnWaveNumber(fromWaveNumber, gameObject); 
         }
         DestroyPools(); 
         Destroy(gameObject);

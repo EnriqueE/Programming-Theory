@@ -33,11 +33,11 @@ public class CameraShake : MonoBehaviour
 		originalPos = camTransform.localPosition;
 
 	}
-    public void Shake()
+    public void OnEnable()
 	{
 		initTime = Time.time;
 		currentShakeDuration = shakeDuration;
-		;
+		
 	}
 
 	void Update()
@@ -52,6 +52,7 @@ public class CameraShake : MonoBehaviour
 		{
 			currentShakeDuration = 0f;
 			camTransform.localPosition = originalPos;
+			this.enabled = false; 
 		}
 	}
 }

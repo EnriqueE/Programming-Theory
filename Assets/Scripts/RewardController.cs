@@ -1,22 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RewardController : MonoBehaviour
 {
     public bool isEnabled = true;
-    public Vector2 speed = new Vector2(1f,0.1f);    
+    public Vector2 speed = new Vector2(1f, 0.1f);
     public float horiztonalBoundary = 9.0f;
     public float bottomBoundary = -5.0f;
     public float timeAlive = 10.0f;
     public ParticleSystem collectParticleSystem;
     public float delayToDisapearWhenCollect = 0.4f;
     public float disapearingTimeWhenCollect = 0.2f;
-    private bool disapearing = false; 
+    private bool disapearing = false;
     private float disapearingStartTime;
     private bool collected = false;
     public float appearingTime = 0.5f;
-    private float rate; 
+    private float rate;
+    public UnityEvent methodCollectReward; 
 
 
     private float initTime;
@@ -26,54 +28,60 @@ public class RewardController : MonoBehaviour
 
     void Start()
     {
-        
+
         vectorMovement = Random.value > 0.5f ? Vector3.right : Vector3.left;
-        initTime = Time.time; 
+        initTime = Time.time;
 
     }
     private void OnTriggerEnter(Collider other)
     {
-        string name = other.transform.root.name; 
-        if(name == "Player" && !collected)
+        string name = other.transform.root.name;
+        if (name == "Player" && !collected)
         {
-            Collect(); 
+            Collect();
         }
     }
     public void Collect()
     {
-        collected = true; 
+        if (methodCollectReward.GetPersistentEventCount() > 0)
+        {
+            methodCollectReward.Invoke();
+        }            
+        collected = true;
         collectParticleSystem.Play();
-        GetComponent<AudioSource>().Play(); 
+        GetComponent<AudioSource>().Play();
         Death();
-       
+
     }
-    
+
     private void Death()
     {
-        
+
         disapearing = true;
-        disapearingStartTime = Time.time; 
+        disapearingStartTime = Time.time;
 
     }
     void Update()
     {
 
-        if(disapearing)
+        if (disapearing)
         {
 
-            if(Time.time > disapearingStartTime + delayToDisapearWhenCollect)
+            if (Time.time > disapearingStartTime + delayToDisapearWhenCollect)
             {
                 rate = (float)Elastic.EaseIn((Time.time - disapearingStartTime - delayToDisapearWhenCollect) / (disapearingTimeWhenCollect), 0, 1, 1);
-                
+
                 if (rate <= 1)
                 {
-                    transform.localScale = new Vector3(1-rate, 1-rate, 1-rate);   
-                } else
+                    transform.localScale = new Vector3(1 - rate, 1 - rate, 1 - rate);
+                }
+                else
                 {
-                    Destroy(gameObject); 
+                    Destroy(gameObject);
                 }
             }
-        } else
+        }
+        else
         {
             if (Time.time - initTime > timeAlive)
             {
@@ -81,14 +89,13 @@ public class RewardController : MonoBehaviour
             }
             if (isEnabled)
             {
-                if(Time.time < initTime + appearingTime)
+                if (Time.time < initTime + appearingTime)
                 {
-                    
+
                     rate = (float)Cubic.EaseOut((Time.time - initTime) / appearingTime, 0, 1, 1);
-                    Debug.Log(rate);
                     transform.localScale = new Vector3(rate, rate, rate);
                 }
-                
+
 
 
                 transform.Translate(vectorMovement * speed.x * Time.deltaTime);
@@ -105,7 +112,10 @@ public class RewardController : MonoBehaviour
                 }
             }
         }
-       
-        
+    }
+    public void LoadNextPlayerWeaponLevel()
+    {
+        Debug.Log("Event");
+        GameObject.Find("Player").GetComponent<PlayerController>().LoadNextWeaponLevel(); 
     }
 }

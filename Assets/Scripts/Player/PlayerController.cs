@@ -111,7 +111,8 @@ public class PlayerController : MonoBehaviour
         weapon.delay = weaponData.delay;
         weapon.speed = weaponData.speed;
         weapon.startDelay = weaponData.startDelay;
-        weapon.maxElements = weaponData.maxElements; 
+        weapon.maxElements = weaponData.maxElements;
+        weapon.UpdatePoolProperties(weapon.damage, weapon.speed); 
         weaponData.weaponGameObject.gameObject.SetActive(true);
     }
     private void LoadWeaponLevel(int weaponLevelNumber)
@@ -122,14 +123,9 @@ public class PlayerController : MonoBehaviour
 
         // Enable weapon level weapons
         foreach(WeaponData weaponData in weaponLevels[weaponLevelNumber].weapons) { LoadWeaponData(weaponData); }
-
-
-        Debug.Log("Loading Weapon Level: " + currentWeaponLevel + " weapons.Length: " + weapons.Length);
-
     }
     public void LoadNextWeaponLevel()
     {
-        Debug.Log("Loading next weapon Level"); 
         currentWeaponLevel++;
         LoadWeaponLevel(currentWeaponLevel); 
     }

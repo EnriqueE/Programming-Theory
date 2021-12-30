@@ -108,4 +108,15 @@ public class Weapon : MonoBehaviour
             elementsFired++;
         }
     }
+    public void UpdatePoolProperties(int m_damage, float m_speed)
+    {
+        Bullet[] bullets = GetComponentsInChildren<Bullet>(true);
+        Debug.Log("Updating properties of " + bullets.Length + " bullets."); 
+        foreach(Bullet bullet in bullets)
+        {
+            bullet.speed = m_speed;
+            bullet.damage = m_damage; 
+        }
+
+    }
 }

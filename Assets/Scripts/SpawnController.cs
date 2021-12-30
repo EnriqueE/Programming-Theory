@@ -11,8 +11,8 @@ public class SpawnController : MonoBehaviour
     public float boundaryHorizontal = 9.0f;
     public GameObject enemiesContainer;
     public float spawnPositionY = 8.0f;
-    [SerializeField] private GameObject weaponRewardPrefab; 
-
+    [SerializeField] private GameObject weaponRewardPrefab;
+    private PlayerController playerController; 
     public Wave[] waves;
     private int currentWave = 0;
     
@@ -48,6 +48,7 @@ public class SpawnController : MonoBehaviour
     private void Start()
     {
         //initTime = Time.time;
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>(); 
         LaunchNextWave();
         InitializeWaves();
     }
@@ -160,12 +161,16 @@ public class SpawnController : MonoBehaviour
         switch(m_reward)
         {
             case Wave.RewardType.weaponReward:
-                prefab = weaponRewardPrefab; 
+                // Prevent Weapon Reward if Player Weapon Level currently have maximum level
+                if (playerController.currentWeaponLevel < playerController.weaponLevels.Count - 1)
+                {
+                    prefab = weaponRewardPrefab;
+                }
                 break; 
         }
         if (prefab)
         {
-            GameObject rewardInstance = Instantiate(weaponRewardPrefab);
+            GameObject rewardInstance = Instantiate(prefab);
             rewardInstance.transform.position = m_lastObject.transform.position; 
         }
         

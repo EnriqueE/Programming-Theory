@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
     
@@ -10,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float returnAngleSpeed = 0.05f; 
     public float rotationSpeed;
     public Vector2 speed = new Vector2(1, 1);
+    private AudioSource audioSource; 
+    public AudioClip hitClip; 
 
     [Serializable]
     public struct WeaponData
@@ -35,8 +38,6 @@ public class PlayerController : MonoBehaviour
     public float boundaryHorizontal = 9.0f;
     [Space(10)]
 
-
-
     [Header("Weapon Leveling")]
     public int currentWeaponLevel = 0; 
     public List<WeaponLevel> weaponLevels = new List<WeaponLevel>(); 
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>(); 
         LoadWeaponLevel(currentWeaponLevel); 
     }
     private void Update()
@@ -86,6 +88,10 @@ public class PlayerController : MonoBehaviour
     }
     public void Hit(int damage)
     {
+        if(hitClip)
+        {
+            audioSource.PlayOneShot(hitClip); 
+        }
         GetComponent<CameraShake>().enabled = true;  
         //Debug.Log("Player hit by " + bullet.gameObject.name); 
     }
@@ -126,7 +132,11 @@ public class PlayerController : MonoBehaviour
     }
     public void LoadNextWeaponLevel()
     {
-        currentWeaponLevel++;
-        LoadWeaponLevel(currentWeaponLevel); 
+        if(currentWeaponLevel < weaponLevels.Count - 1)
+        {
+            currentWeaponLevel++;
+            LoadWeaponLevel(currentWeaponLevel);
+        }
+        
     }
 }

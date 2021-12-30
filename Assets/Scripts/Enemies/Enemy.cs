@@ -13,7 +13,17 @@ public class Enemy : MonoBehaviour
     private AudioSource audioSource;
     public int fromWaveNumber { get; set; }
     private bool isDead = false;
+    [System.Serializable]
+    public struct EnemyData
+    {
+        public string name;
+        public Enemy prefab;
+        public int health;
+        [Header("Weapons")]
+        public bool updateWeaponData;
+        public Weapon.WeaponData weaponData;
 
+    }
     private void Awake()
     {
         fromWaveNumber = -1;
@@ -70,6 +80,12 @@ public class Enemy : MonoBehaviour
             explosionPS.SetActive(true);
         }        
         SilentDeath();
+    }
+    public void UpdateWeaponData(Weapon.WeaponData weaponData)
+    {     
+        foreach (Weapon weapon in GetComponentsInChildren<Weapon>(true))
+            weapon.UpdateWeaponData(weaponData); 
+        
     }
 
   

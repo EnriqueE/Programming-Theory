@@ -115,7 +115,6 @@ public class RewardController : MonoBehaviour
     }
     public void LoadNextPlayerWeaponLevel()
     {
-        Debug.Log("Event");
         GameObject.Find("Player").GetComponent<PlayerController>().LoadNextWeaponLevel(); 
     }
 }

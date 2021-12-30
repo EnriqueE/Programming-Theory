@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private WeaponTriggerType weaponTriggerType;
     public KeyCode[] weaponTriggerKey;
+    
     public GameObject prefab;
     public int damage;
     public float speed;
@@ -15,25 +16,38 @@ public class Weapon : MonoBehaviour
     public int maxElements = 0;
     private int elementsFired = 0;
     public float startDelay = 0.0f;
-
     private float lastFireTime;
-
     private PoolController poolController;
     private float initTime = 0.0f;
 
+    [System.Serializable]
+    public struct WeaponData
+    {        
+        public int damage;
+        public int maxElements;
+        public float delay;
+        public float startDelay;
+        public float speed;
+    }
+   
+    public void UpdateWeaponData(WeaponData weaponData)
+    {
+        damage = weaponData.damage; 
+        speed = weaponData.speed;
+        delay = weaponData.delay;   
+        maxElements = weaponData.maxElements;
+        startDelay = weaponData.startDelay;
+        UpdatePoolProperties(damage, speed); 
+    }
+    
     // Trigger type to auto fire bullet
     public enum WeaponTriggerType { always, manual, onWeaponTriggerKey }
     private void Start()
     {
-        //Debug.Log("Speed: " + speed); 
         initTime = Time.time;
-
         // Create pool of bullets
         poolController = GetComponent<PoolController>();
         poolController.CreatePool(prefab, damage, speed, maxElements);
-        // Debug.Log("Creating Pool: " + damage + " , " + speed); 
-
-
     }
     private void Update()
     {
@@ -59,29 +73,7 @@ public class Weapon : MonoBehaviour
                         }
                     }
                     break;
-
             }
-
-            // If key Down
-
-
-            /*        
-                    
-                    if (weaponTriggerType == WeaponTriggerType.always &&
-                        (elementsFired < maxElements || maxElements == 0))
-                    {
-
-                    }
-                }                  
-            }
-            if ((Input.GetKey(KeyCode.Space) && weaponTriggerType == WeaponTriggerType.onFireKey) ||
-                (Input.GetKey(KeyCode.RightAlt) && weaponTriggerType == WeaponTriggerType.onRightAltKey) ||
-                (Input.GetKey(KeyCode.LeftControl) && weaponTriggerType == WeaponTriggerType.onLeftControlKey) ||
-                (weaponTriggerType == WeaponTriggerType.always &&              
-                (elementsFired < maxElements || maxElements == 0)))
-            {
-                FireElement();
-            }*/
         }
     }
 
@@ -111,11 +103,11 @@ public class Weapon : MonoBehaviour
     public void UpdatePoolProperties(int m_damage, float m_speed)
     {
         Bullet[] bullets = GetComponentsInChildren<Bullet>(true);
-        Debug.Log("Updating properties of " + bullets.Length + " bullets."); 
         foreach(Bullet bullet in bullets)
         {
             bullet.speed = m_speed;
             bullet.damage = m_damage; 
+            
         }
 
     }

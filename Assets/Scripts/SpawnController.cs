@@ -8,17 +8,20 @@ using PathCreation.Examples;
 
 public class SpawnController : MonoBehaviour
  {
-    public float boundaryHorizontal = 9.0f;
-    public GameObject enemiesContainer;
-    public float spawnPositionY = 8.0f;
+    [SerializeField] private float boundaryHorizontal = 9.0f;
+    [SerializeField] private GameObject enemiesContainer;
+    [SerializeField] private float spawnPositionY = 8.0f;
+    private PlayerController playerController;
+    [Header("Rewards")]
     [SerializeField] private GameObject weaponRewardPrefab;
-    private PlayerController playerController; 
+    [Space(10)]
+    [Header("Waves")]
     public Wave[] waves;
     private int currentWave = 0;
-    
 
+
+   
     [Serializable]
-
     public struct Wave
     {
         public enum MovementType { infiniteDown, followPath }
@@ -26,11 +29,14 @@ public class SpawnController : MonoBehaviour
         public int id { get; set; }
         public string name;
         public bool enabled;               
-        
-        public Enemy[] enemies;
+
+        [Tooltip("All Enemies in the wave, in order")]
+        public Enemy.EnemyData[] enemies;
+        [Tooltip("Randomize between all elements of Enemies")]
         public bool randomEnemies;
         public int currentEnemy { get; set; }        
         public MovementType movementType;
+        public float infiniteDownSpeed;
         public PathCreator path;
         public EndOfPathInstruction endOfPathInstruction;
         public RewardType reward; 
@@ -83,8 +89,7 @@ public class SpawnController : MonoBehaviour
     private IEnumerator LaunchWaveCoroutine(Wave wave)
     {
          
-        // Skip Wave if
-        //  quantity = 0  or not enemies added or disabled
+        // Skip Wave if quantity = 0  or not enemies added or disabled
         if(wave.quantity > 0 && wave.enabled && wave.enemies.Length > 0)
         {
             if (wave.initDelay > 0)
@@ -109,14 +114,22 @@ public class SpawnController : MonoBehaviour
 
                 }
 
-                Enemy enemy = Instantiate(wave.enemies[enemyIndex], enemiesContainer.transform);
+                Enemy enemy = Instantiate(wave.enemies[enemyIndex].prefab, enemiesContainer.transform);
 
                 enemy.gameObject.name = "Enemy " + i + " from wave " + wave.id + " (" + enemy.gameObject.name + ")";
                 enemy.transform.position = new Vector3(
                     UnityEngine.Random.Range(-boundaryHorizontal, boundaryHorizontal),
                     spawnPositionY, 0);
-                enemy.transform.rotation = wave.enemies[enemyIndex].transform.rotation;
-                enemy.fromWaveNumber = wave.id; 
+                enemy.transform.rotation = wave.enemies[enemyIndex].prefab.transform.rotation;
+                enemy.fromWaveNumber = wave.id;
+                enemy.health = wave.enemies[enemyIndex].health; 
+                if(wave.enemies[enemyIndex].updateWeaponData)
+                {
+                    enemy.UpdateWeaponData(wave.enemies[enemyIndex].weaponData); 
+                }
+
+
+
                 if(wave.movementType == Wave.MovementType.followPath)
                 {
                     PathFollower pathFollower = enemy.gameObject.AddComponent<PathFollower>();

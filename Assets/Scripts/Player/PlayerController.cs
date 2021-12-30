@@ -3,6 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public struct WeaponData
+{
+    public string name;
+    public GameObject weaponGameObject;
+    public int damage;
+    public int maxElements;
+    public float delay;
+    public float startDelay;
+    public float speed;
+}
 [RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
@@ -14,21 +25,10 @@ public class PlayerController : MonoBehaviour
     private AudioSource audioSource; 
     public AudioClip hitClip; 
 
-    [Serializable]
-    public struct WeaponData
-    {
-        public string name;
-        public GameObject weaponGameObject;
-        public int damage;
-        public int maxElements;
-        public float delay;
-        public float startDelay;
-        public float speed; 
-    }
+   
     [Serializable]
     public struct WeaponLevel
-    {
-       
+    {       
         public List<WeaponData> weapons;
     }
 

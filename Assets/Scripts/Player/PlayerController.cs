@@ -17,13 +17,14 @@ public struct WeaponData
 [RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
-    
+    public int health = 100;
     public float maxAngleRotation = 0.4f;
     public float returnAngleSpeed = 0.05f; 
     public float rotationSpeed;
     public Vector2 speed = new Vector2(1, 1);
     private AudioSource audioSource; 
-    public AudioClip hitClip; 
+    public AudioClip hitClip;
+    private UIGameController uIGameController; 
 
    
     [Serializable]
@@ -39,7 +40,8 @@ public class PlayerController : MonoBehaviour
     [Space(10)]
 
     [Header("Weapon Leveling")]
-    public int currentWeaponLevel = 0; 
+    public int currentWeaponLevel = 0;
+   
     public List<WeaponLevel> weaponLevels = new List<WeaponLevel>(); 
     [Space(10)]
 
@@ -52,9 +54,12 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        uIGameController = GameObject.Find("UI").GetComponent<UIGameController>(); 
         audioSource = GetComponent<AudioSource>(); 
-        LoadWeaponLevel(currentWeaponLevel); 
+        LoadWeaponLevel(currentWeaponLevel);
+       
     }
+    
     private void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
@@ -92,9 +97,12 @@ public class PlayerController : MonoBehaviour
         {
             audioSource.PlayOneShot(hitClip); 
         }
-        GetComponent<CameraShake>().enabled = true;  
-        //Debug.Log("Player hit by " + bullet.gameObject.name); 
+        GetComponent<CameraShake>().enabled = true;
+        health -= damage;
+        uIGameController.UpdateUIInfo();
+
     }
+
     private void HandleMovement()
     {
         
@@ -129,6 +137,7 @@ public class PlayerController : MonoBehaviour
 
         // Enable weapon level weapons
         foreach(WeaponData weaponData in weaponLevels[weaponLevelNumber].weapons) { LoadWeaponData(weaponData); }
+        uIGameController.UpdateUIInfo(); 
     }
     public void LoadNextWeaponLevel()
     {

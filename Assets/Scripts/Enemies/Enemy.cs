@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
     }
     public void Hit(int damage)
     {
+        GameController.instance.AddScore(1); 
         // Reduce health of Enemy and Destroy it, when health <= 0
         health -= damage;
         if (health <= 0)
@@ -67,6 +68,8 @@ public class Enemy : MonoBehaviour
     }
     public virtual void Death()
     {
+        GameController.instance.AddScore(health); 
+
         // Audio Explision
         if (explosionClip) { 
             AudioController.instance.Play(explosionClip);
@@ -78,6 +81,9 @@ public class Enemy : MonoBehaviour
         {
             explosionPS.transform.parent = pool.transform;
             explosionPS.SetActive(true);
+            InfiniteDown infiniteDown = explosionPS.AddComponent<InfiniteDown>();
+            infiniteDown.speed = 0.5f; 
+            
         }        
         SilentDeath();
     }

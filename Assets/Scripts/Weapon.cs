@@ -1,7 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
+public struct WeaponData
+{
+    public int damage;
+    public int maxElements;
+    public float delay;
+    public float startDelay;
+    public float speed;
+}
 [RequireComponent(typeof(PoolController))]
 public class Weapon : MonoBehaviour
 {
@@ -20,15 +28,6 @@ public class Weapon : MonoBehaviour
     private PoolController poolController;
     private float initTime = 0.0f;
 
-    [System.Serializable]
-    public struct WeaponData
-    {        
-        public int damage;
-        public int maxElements;
-        public float delay;
-        public float startDelay;
-        public float speed;
-    }
    
     public void UpdateWeaponData(WeaponData weaponData)
     {

@@ -582,7 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754614a0566903249b80837521f2ab67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 5
   maxAngleRotation: 0.25
   returnAngleSpeed: 1
   rotationSpeed: 200
@@ -703,6 +703,227 @@ MonoBehaviour:
       delay: 0.2
       startDelay: 0
       speed: 10
+  - weapons:
+    - name: Weapon Left
+      weaponGameObject: {fileID: 1287771838}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Right
+      weaponGameObject: {fileID: 831470618}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Left 2
+      weaponGameObject: {fileID: 2135341532}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Right 2
+      weaponGameObject: {fileID: 1548989500}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Right Diagonal
+      weaponGameObject: {fileID: 1575616256}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Left Diagonal
+      weaponGameObject: {fileID: 1084584373}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+  - weapons:
+    - name: Weapon Left
+      weaponGameObject: {fileID: 1287771838}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Right
+      weaponGameObject: {fileID: 831470618}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Left 2
+      weaponGameObject: {fileID: 2135341532}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Right 2
+      weaponGameObject: {fileID: 1548989500}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Right Diagonal
+      weaponGameObject: {fileID: 1575616256}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Left Diagonal
+      weaponGameObject: {fileID: 1084584373}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Center
+      weaponGameObject: {fileID: 374087634}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+  - weapons:
+    - name: Weapon Left
+      weaponGameObject: {fileID: 1287771838}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Right
+      weaponGameObject: {fileID: 831470618}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Left 2
+      weaponGameObject: {fileID: 2135341532}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Right 2
+      weaponGameObject: {fileID: 1548989500}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Right Diagonal
+      weaponGameObject: {fileID: 1575616256}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Left Diagonal
+      weaponGameObject: {fileID: 1084584373}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Center
+      weaponGameObject: {fileID: 374087634}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Bottom
+      weaponGameObject: {fileID: 2006019125}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+  - weapons:
+    - name: Weapon Left
+      weaponGameObject: {fileID: 1287771838}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Right
+      weaponGameObject: {fileID: 831470618}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Left 2
+      weaponGameObject: {fileID: 2135341532}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Right 2
+      weaponGameObject: {fileID: 1548989500}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Right Diagonal
+      weaponGameObject: {fileID: 1575616256}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Left Diagonal
+      weaponGameObject: {fileID: 1084584373}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Center
+      weaponGameObject: {fileID: 374087634}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Weapon Bottom
+      weaponGameObject: {fileID: 2006019125}
+      damage: 5
+      maxElements: 0
+      delay: 0.2
+      startDelay: 0
+      speed: 10
+    - name: Rocket Launcher Left
+      weaponGameObject: {fileID: 1601407118}
+      damage: 10
+      maxElements: 2
+      delay: 1
+      startDelay: 0
+      speed: 5
+    - name: Rocket Launcher Right
+      weaponGameObject: {fileID: 1419444954}
+      damage: 10
+      maxElements: 2
+      delay: 1
+      startDelay: 0
+      speed: 5
 --- !u!4 &160404822
 Transform:
   m_ObjectHideFlags: 0
@@ -1976,7 +2197,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &597011662
 GameObject:
@@ -2012,7 +2233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1718.73, y: 734.8338}
+  m_AnchoredPosition: {x: -118.8, y: -11.994}
   m_SizeDelta: {x: 221.1037, y: 28.1047}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &597011664
@@ -2173,7 +2394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7763691986800507220, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
       propertyPath: m_Name
-      value: Weapon Rocket Launcher
+      value: Weapon Rocket Launcher Left
       objectReference: {fileID: 0}
     - target: {fileID: 7763691986800507220, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
       propertyPath: m_IsActive
@@ -2551,8 +2772,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 1133.5, y: 428.0401}
+  m_SizeDelta: {x: 258.7889, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &931114054
 GameObject:
@@ -2588,8 +2809,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 973, y: 538.3401}
+  m_SizeDelta: {x: 579.7497, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &974668421 stripped
 Transform:
@@ -2734,7 +2955,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1040482850 stripped
 Transform:
@@ -2955,6 +3176,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 799128018081147305, guid: 99f83ff9210c740c7b8518d79563273c, type: 3}
   m_PrefabInstance: {fileID: 720324810}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1084584373 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7763691986800507220, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+  m_PrefabInstance: {fileID: 2108660613}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1099900228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3162,7 +3388,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1168074388
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3580,7 +3806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7763691986800507220, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
       propertyPath: m_Name
-      value: Weapon Rocket Launcher (1)
+      value: Weapon Rocket Launcher Right
       objectReference: {fileID: 0}
     - target: {fileID: 7763691986800507220, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
       propertyPath: m_IsActive
@@ -3681,8 +3907,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 1044, y: 652}
+  m_SizeDelta: {x: 437.7478, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1397378322
 GameObject:
@@ -3844,33 +4070,30 @@ MonoBehaviour:
   spawnPositionY: 8
   weaponRewardPrefab: {fileID: 4699515183913008213, guid: 07699b5eab81f4c8d8e1e6b0819c8ca3, type: 3}
   waves:
-  - name: Path S Ovnis Easy
+  - name: One Down
     enabled: 1
     enemies:
     - name: Ovni
       prefab: {fileID: -1839073305889195270, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
       health: 10
-      updateWeaponData: 1
+      updateWeaponData: 0
       weaponData:
-        damage: 1
-        maxElements: 3
-        delay: 1
-        startDelay: 1
-        speed: 1
+        damage: 0
+        maxElements: 0
+        delay: 0
+        startDelay: 0
+        speed: 0
     randomEnemies: 1
-    movementType: 1
-    infiniteDownSpeed: 0
+    movementType: 0
+    infiniteDownSpeed: 4
     path: {fileID: 8021171022761618445, guid: c707c8abcd3364766af290bba23e74f1, type: 3}
     endOfPathInstruction: 0
     reward: 2
-    quantity: 10
-    initDelay: 0
+    quantity: 1
+    initDelay: 1
     rate: 0.5
-    speed: 2
+    speed: 1
     methodAtTotalLaunched:
-      m_PersistentCalls:
-        m_Calls: []
-    methodAtAllDestroyed:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1408948056}
@@ -3885,18 +4108,308 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    methodAtAllDestroyed:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: One Down
+    enabled: 1
+    enemies:
+    - name: Ovni
+      prefab: {fileID: -1839073305889195270, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
+      health: 10
+      updateWeaponData: 0
+      weaponData:
+        damage: 0
+        maxElements: 0
+        delay: 0
+        startDelay: 0
+        speed: 0
+    randomEnemies: 1
+    movementType: 0
+    infiniteDownSpeed: 4
+    path: {fileID: 8021171022761618445, guid: c707c8abcd3364766af290bba23e74f1, type: 3}
+    endOfPathInstruction: 0
+    reward: 2
+    quantity: 1
+    initDelay: 1
+    rate: 0.5
+    speed: 1
+    methodAtTotalLaunched:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1408948056}
+          m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
+          m_MethodName: LaunchNextWave
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    methodAtAllDestroyed:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: One Down
+    enabled: 1
+    enemies:
+    - name: Ovni
+      prefab: {fileID: -1839073305889195270, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
+      health: 10
+      updateWeaponData: 0
+      weaponData:
+        damage: 0
+        maxElements: 0
+        delay: 0
+        startDelay: 0
+        speed: 0
+    randomEnemies: 1
+    movementType: 0
+    infiniteDownSpeed: 4
+    path: {fileID: 8021171022761618445, guid: c707c8abcd3364766af290bba23e74f1, type: 3}
+    endOfPathInstruction: 0
+    reward: 2
+    quantity: 1
+    initDelay: 1
+    rate: 0.5
+    speed: 1
+    methodAtTotalLaunched:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1408948056}
+          m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
+          m_MethodName: LaunchNextWave
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    methodAtAllDestroyed:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: One Down
+    enabled: 1
+    enemies:
+    - name: Ovni
+      prefab: {fileID: -1839073305889195270, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
+      health: 10
+      updateWeaponData: 0
+      weaponData:
+        damage: 0
+        maxElements: 0
+        delay: 0
+        startDelay: 0
+        speed: 0
+    randomEnemies: 1
+    movementType: 0
+    infiniteDownSpeed: 4
+    path: {fileID: 8021171022761618445, guid: c707c8abcd3364766af290bba23e74f1, type: 3}
+    endOfPathInstruction: 0
+    reward: 2
+    quantity: 1
+    initDelay: 1
+    rate: 0.5
+    speed: 1
+    methodAtTotalLaunched:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1408948056}
+          m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
+          m_MethodName: LaunchNextWave
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    methodAtAllDestroyed:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
           m_MethodName: 
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - name: One Down
+    enabled: 1
+    enemies:
+    - name: Ovni
+      prefab: {fileID: -1839073305889195270, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
+      health: 10
+      updateWeaponData: 0
+      weaponData:
+        damage: 0
+        maxElements: 0
+        delay: 0
+        startDelay: 0
+        speed: 0
+    randomEnemies: 1
+    movementType: 0
+    infiniteDownSpeed: 4
+    path: {fileID: 8021171022761618445, guid: c707c8abcd3364766af290bba23e74f1, type: 3}
+    endOfPathInstruction: 0
+    reward: 2
+    quantity: 1
+    initDelay: 1
+    rate: 0.5
+    speed: 1
+    methodAtTotalLaunched:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1408948056}
+          m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
+          m_MethodName: LaunchNextWave
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    methodAtAllDestroyed:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: One Down
+    enabled: 1
+    enemies:
+    - name: Ovni
+      prefab: {fileID: -1839073305889195270, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
+      health: 10
+      updateWeaponData: 0
+      weaponData:
+        damage: 0
+        maxElements: 0
+        delay: 0
+        startDelay: 0
+        speed: 0
+    randomEnemies: 1
+    movementType: 0
+    infiniteDownSpeed: 4
+    path: {fileID: 8021171022761618445, guid: c707c8abcd3364766af290bba23e74f1, type: 3}
+    endOfPathInstruction: 0
+    reward: 2
+    quantity: 1
+    initDelay: 1
+    rate: 0.5
+    speed: 1
+    methodAtTotalLaunched:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1408948056}
+          m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
+          m_MethodName: LaunchNextWave
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    methodAtAllDestroyed:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: One Down
+    enabled: 1
+    enemies:
+    - name: Ovni
+      prefab: {fileID: -1839073305889195270, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
+      health: 10
+      updateWeaponData: 0
+      weaponData:
+        damage: 0
+        maxElements: 0
+        delay: 0
+        startDelay: 0
+        speed: 0
+    randomEnemies: 1
+    movementType: 0
+    infiniteDownSpeed: 4
+    path: {fileID: 8021171022761618445, guid: c707c8abcd3364766af290bba23e74f1, type: 3}
+    endOfPathInstruction: 0
+    reward: 2
+    quantity: 1
+    initDelay: 1
+    rate: 0.5
+    speed: 1
+    methodAtTotalLaunched:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1408948056}
+          m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
+          m_MethodName: LaunchNextWave
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    methodAtAllDestroyed:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: One Down
+    enabled: 1
+    enemies:
+    - name: Ovni
+      prefab: {fileID: -1839073305889195270, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
+      health: 10
+      updateWeaponData: 0
+      weaponData:
+        damage: 0
+        maxElements: 0
+        delay: 0
+        startDelay: 0
+        speed: 0
+    randomEnemies: 1
+    movementType: 0
+    infiniteDownSpeed: 4
+    path: {fileID: 8021171022761618445, guid: c707c8abcd3364766af290bba23e74f1, type: 3}
+    endOfPathInstruction: 0
+    reward: 2
+    quantity: 1
+    initDelay: 0
+    rate: 0.5
+    speed: 1
+    methodAtTotalLaunched:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1408948056}
+          m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
+          m_MethodName: LaunchNextWave
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    methodAtAllDestroyed:
+      m_PersistentCalls:
+        m_Calls: []
   - name: First One Down
     enabled: 1
     enemies:
@@ -3956,6 +4469,59 @@ MonoBehaviour:
     - name: Ovni
       prefab: {fileID: -1839073305889195270, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
       health: 10
+      updateWeaponData: 1
+      weaponData:
+        damage: 1
+        maxElements: 3
+        delay: 1
+        startDelay: 1
+        speed: 1
+    randomEnemies: 1
+    movementType: 1
+    infiniteDownSpeed: 0
+    path: {fileID: 8021171022761618445, guid: c707c8abcd3364766af290bba23e74f1, type: 3}
+    endOfPathInstruction: 0
+    reward: 2
+    quantity: 2
+    initDelay: 0
+    rate: 0.5
+    speed: 2
+    methodAtTotalLaunched:
+      m_PersistentCalls:
+        m_Calls: []
+    methodAtAllDestroyed:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1408948056}
+          m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
+          m_MethodName: LaunchNextWave
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - name: Path S Ovnis Easy
+    enabled: 1
+    enemies:
+    - name: Ovni
+      prefab: {fileID: -1839073305889195270, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
+      health: 10
       updateWeaponData: 0
       weaponData:
         damage: 0
@@ -3969,7 +4535,7 @@ MonoBehaviour:
     path: {fileID: 8021171022761618445, guid: c707c8abcd3364766af290bba23e74f1, type: 3}
     endOfPathInstruction: 0
     reward: 2
-    quantity: 50
+    quantity: 5
     initDelay: 0
     rate: 0.5
     speed: 3
@@ -3992,11 +4558,11 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - name: Rocks Top Down
-    enabled: 0
+    enabled: 1
     enemies:
-    - name: 
-      prefab: {fileID: 0}
-      health: 0
+    - name: 'Rock1 '
+      prefab: {fileID: 799128018081147304, guid: 99f83ff9210c740c7b8518d79563273c, type: 3}
+      health: 10
       updateWeaponData: 0
       weaponData:
         damage: 0
@@ -4004,9 +4570,9 @@ MonoBehaviour:
         delay: 0
         startDelay: 0
         speed: 0
-    - name: 
-      prefab: {fileID: 0}
-      health: 0
+    - name: Rcok2
+      prefab: {fileID: 4555686342165481595, guid: 48ff06326995043c7a717f4402c1ef05, type: 3}
+      health: 10
       updateWeaponData: 0
       weaponData:
         damage: 0
@@ -4016,14 +4582,85 @@ MonoBehaviour:
         speed: 0
     randomEnemies: 0
     movementType: 0
-    infiniteDownSpeed: 0
+    infiniteDownSpeed: 1
     path: {fileID: 0}
     endOfPathInstruction: 0
-    reward: 0
-    quantity: 100
+    reward: 2
+    quantity: 20
     initDelay: 0
     rate: 1
-    speed: 1.5
+    speed: 1
+    methodAtTotalLaunched:
+      m_PersistentCalls:
+        m_Calls: []
+    methodAtAllDestroyed:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - name: Enemies Top Down
+    enabled: 1
+    enemies:
+    - name: 'Rock1 '
+      prefab: {fileID: 799128018081147304, guid: 99f83ff9210c740c7b8518d79563273c, type: 3}
+      health: 10
+      updateWeaponData: 0
+      weaponData:
+        damage: 0
+        maxElements: 0
+        delay: 0
+        startDelay: 0
+        speed: 0
+    - name: Rcok2
+      prefab: {fileID: 4555686342165481595, guid: 48ff06326995043c7a717f4402c1ef05, type: 3}
+      health: 10
+      updateWeaponData: 0
+      weaponData:
+        damage: 0
+        maxElements: 0
+        delay: 0
+        startDelay: 0
+        speed: 0
+    - name: Ovni
+      prefab: {fileID: -1839073305889195270, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
+      health: 10
+      updateWeaponData: 0
+      weaponData:
+        damage: 0
+        maxElements: 0
+        delay: 0
+        startDelay: 0
+        speed: 0
+    - name: SpaceShip 10
+      prefab: {fileID: 1015931904470746440, guid: 7d0e33e1bf1db459ba0b47303e50592e, type: 3}
+      health: 10
+      updateWeaponData: 0
+      weaponData:
+        damage: 0
+        maxElements: 0
+        delay: 0
+        startDelay: 0
+        speed: 0
+    randomEnemies: 1
+    movementType: 0
+    infiniteDownSpeed: 1
+    path: {fileID: 0}
+    endOfPathInstruction: 0
+    reward: 2
+    quantity: 50
+    initDelay: 0
+    rate: 3
+    speed: 1
     methodAtTotalLaunched:
       m_PersistentCalls:
         m_Calls: []
@@ -4056,6 +4693,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1419444954 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7763691986800507220, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+  m_PrefabInstance: {fileID: 1275536490}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1480388705 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7763691986800507221, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
@@ -4174,7 +4816,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1628.6226, y: 918.51685}
+  m_AnchoredPosition: {x: -199.86, y: -68}
   m_SizeDelta: {x: 399.725, y: 84.3205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1525905925
@@ -4370,7 +5012,7 @@ Transform:
   - {fileID: 394472221}
   - {fileID: 865050538}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1548989500 stripped
 GameObject:
@@ -4442,6 +5084,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
+--- !u!1 &1575616256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7763691986800507220, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+  m_PrefabInstance: {fileID: 126190366}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1584591666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4507,6 +5154,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
+--- !u!1 &1601407118 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7763691986800507220, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+  m_PrefabInstance: {fileID: 599818392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1613282187 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 52d510d804c234007909ee2b3c28e157, type: 3}
@@ -4663,8 +5315,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1765.9299, y: 980.93384}
-  m_SizeDelta: {x: 119.3955, y: 28.1047}
+  m_AnchoredPosition: {x: -63.6, y: -13.6}
+  m_SizeDelta: {x: 119.3955, y: 33.9279}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1639975360
 MonoBehaviour:
@@ -4794,6 +5446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   scoreMultiplier: 10
+  weaponRewardPrefab: {fileID: 4699515183913008213, guid: 07699b5eab81f4c8d8e1e6b0819c8ca3, type: 3}
   debugGameStateText: {fileID: 1397378324}
   debugGeneralPurposeText1: {fileID: 417747308}
   debugGeneralPurposeText2: {fileID: 1511731351}
@@ -4810,7 +5463,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1757076191 stripped
 Transform:
@@ -4851,8 +5504,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1733.9988, y: 636.93384}
-  m_SizeDelta: {x: 190.5674, y: 150.6265}
+  m_AnchoredPosition: {x: -98.3, y: -63.023}
+  m_SizeDelta: {x: 190.5674, y: 73.9538}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1769683167
 MonoBehaviour:
@@ -4985,7 +5638,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1766.73, y: 858.93384}
+  m_AnchoredPosition: {x: -65.7, y: -10.675999}
   m_SizeDelta: {x: 119.3955, y: 28.1047}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1792570762
@@ -5351,8 +6004,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1734, y: 786.6}
-  m_SizeDelta: {x: 190.57, y: 104.1542}
+  m_AnchoredPosition: {x: -101.5, y: -63.9}
+  m_SizeDelta: {x: 201.4155, y: 78.3431}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1900424464
 MonoBehaviour:
@@ -5562,41 +6215,16 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d9d252d6d61c54cc59725fdea53b011c, type: 3}
   m_PrefabInstance: {fileID: 510241855}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2006019125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7763691986800507220, guid: f9bd67fc20aee8b478f332e039432185, type: 3}
+  m_PrefabInstance: {fileID: 369017134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2020919345 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1489147641450517617, guid: 2f766c630f5174a059cafc3cb77c4614, type: 3}
   m_PrefabInstance: {fileID: 5603132544097544183}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2028537259
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2028537260}
-  m_Layer: 0
-  m_Name: Pool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2028537260
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2028537259}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2079734909 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 542f6f1000d0145619c00394c963fb5e, type: 3}
@@ -5883,7 +6511,7 @@ Transform:
   m_Children:
   - {fileID: 2098970195}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &543450652104916134 stripped
 Transform:

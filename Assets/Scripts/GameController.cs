@@ -14,7 +14,10 @@ public class GameController : MonoBehaviour
 
     private string m_UserName = "UnnamedPlayer";
     public int score = 0;
-    public int scoreMultiplier = 10; 
+    public int scoreMultiplier = 10;
+    [Header("Rewards")]
+    public GameObject weaponRewardPrefab; 
+    [Space(10)]
     private UIGameController uIGameController; 
     public string UserName
     {
@@ -49,12 +52,16 @@ public class GameController : MonoBehaviour
 
     public void AddScore(int newScore) {
         score += newScore * scoreMultiplier;
-        uIGameController.UpdateUIInfo(); 
+        if (!uIGameController)
+        {
+            uIGameController = GameObject.Find("UI").GetComponent<UIGameController>();
+        }
+        if(uIGameController)
+        {
+            uIGameController.UpdateUIInfo();
+        }
     }
-    private void Start()
-    {
-        uIGameController = GameObject.Find("UI").GetComponent<UIGameController>();    
-    }
+    
     private void Awake()
     {
         if (instance != null)

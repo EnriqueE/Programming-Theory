@@ -117,4 +117,31 @@ public class RewardController : MonoBehaviour
     {
         GameObject.Find("Player").GetComponent<PlayerController>().LoadNextWeaponLevel(); 
     }
+    public static void CreateReward(SpawnController.Wave.RewardType rewardType, Transform position)
+    {        
+        GameObject prefab = null;
+        PlayerController  playerController = GameObject.Find("Player").GetComponent < PlayerController>(); 
+        switch (rewardType)
+        {
+            case SpawnController.Wave.RewardType.weaponReward:
+            
+                // Prevent Weapon Reward if Player Weapon Level currently have maximum level
+                if (playerController.currentWeaponLevel < playerController.weaponLevels.Count - 1)
+                {
+                    prefab = GameController.instance.weaponRewardPrefab;
+                }
+                break;
+        }
+        if (prefab)
+        {
+            // Check if Reward Container exists
+            GameObject rewards = GameObject.Find("Rewards") ? GameObject.Find("Rewards") : new GameObject("Rewards"); 
+            
+               
+            GameObject rewardInstance = Instantiate(prefab, rewards.transform);
+            rewardInstance.transform.position = position.position;
+        }
+
+
+    }
 }

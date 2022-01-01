@@ -26,14 +26,9 @@ public class PoolController : MonoBehaviour
 
     private void FindOrCreateMainPool()
     {
-        mainPool = GameObject.Find("Pool");
-        if (!mainPool)
-        {
-            mainPool = new GameObject();
-            mainPool.name = "Pool";
-        }
+        mainPool = GameObject.Find("Pool") ? GameObject.Find("Pool") : new GameObject("Pool");
+
     }
-   
     public void CreatePool(GameObject m_prefab)
     {
         prefab = m_prefab;         

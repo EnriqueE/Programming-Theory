@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
         public int health;
         [Header("Weapons")]
         public bool updateWeaponData;
-        public Weapon.WeaponData weaponData;
+        public WeaponData weaponData;
 
     }
     private void Awake()
@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour
         }        
         SilentDeath();
     }
-    public void UpdateWeaponData(Weapon.WeaponData weaponData)
+    public void UpdateWeaponData(WeaponData weaponData)
     {     
         foreach (Weapon weapon in GetComponentsInChildren<Weapon>(true))
             weapon.UpdateWeaponData(weaponData); 

@@ -3,17 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public struct WeaponData
-{
-    public string name;
-    public GameObject weaponGameObject;
-    public int damage;
-    public int maxElements;
-    public float delay;
-    public float startDelay;
-    public float speed;
-}
+
 [RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
@@ -24,9 +14,19 @@ public class PlayerController : MonoBehaviour
     public Vector2 speed = new Vector2(1, 1);
     private AudioSource audioSource; 
     public AudioClip hitClip;
-    private UIGameController uIGameController; 
+    private UIGameController uIGameController;
+    [Serializable]
+    public struct WeaponData
+    {
+        public string name;
+        public GameObject weaponGameObject;
+        public int damage;
+        public int maxElements;
+        public float delay;
+        public float startDelay;
+        public float speed;
+    }
 
-   
     [Serializable]
     public struct WeaponLevel
     {       

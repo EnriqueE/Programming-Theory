@@ -69,7 +69,7 @@ public class SpawnController : MonoBehaviour
         }
             
     }
-    void   LaunchWave(Wave wave)
+    void LaunchWave(Wave wave)
     {
 
         IEnumerator coroutine;
@@ -113,7 +113,7 @@ public class SpawnController : MonoBehaviour
                     }
 
                 }
-
+                
                 Enemy enemy = Instantiate(wave.enemies[enemyIndex].prefab, enemiesContainer.transform);
 
                 enemy.gameObject.name = "Enemy " + i + " from wave " + wave.id + " (" + enemy.gameObject.name + ")";
@@ -161,14 +161,15 @@ public class SpawnController : MonoBehaviour
         if(waves[waveNumber].deaths == waves[waveNumber].quantity && waves[waveNumber].quantity > 0)
         {
 
-            CreateReward(waves[waveNumber].reward, lastObject); 
+            RewardController.CreateReward(waves[waveNumber].reward, lastObject.transform);
+       //     Debug.Log("wave.name: " + waves[waveNumber].name); 
             if(waves[waveNumber].methodAtAllDestroyed.GetPersistentEventCount() > 0 )
             {
                 waves[waveNumber].methodAtAllDestroyed.Invoke();
             }
         }
     }
-    public void CreateReward(Wave.RewardType m_reward, GameObject m_lastObject)
+    /*public void CreateReward(Wave.RewardType m_reward, GameObject m_lastObject)
     {
         GameObject prefab = null; 
         switch(m_reward)
@@ -188,6 +189,6 @@ public class SpawnController : MonoBehaviour
         }
         
 
-    }
+    }*/
 }
     

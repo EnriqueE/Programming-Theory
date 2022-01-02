@@ -88,7 +88,7 @@ public class SpawnController : MonoBehaviour
     }
     private IEnumerator LaunchWaveCoroutine(Wave wave)
     {
-         
+        //GameController.instance.Log("Launching WAVE: " + wave.name);
         // Skip Wave if quantity = 0  or not enemies added or disabled
         if(wave.quantity > 0 && wave.enabled && wave.enemies.Length > 0)
         {
@@ -149,6 +149,7 @@ public class SpawnController : MonoBehaviour
         {
             Debug.Log("Wave " + wave.id + " skipped."); 
         }
+        GameController.instance.Log("Wave " + wave.name + " completly launched."); 
         if(wave.methodAtTotalLaunched.GetPersistentEventCount()>0)
         {
             wave.methodAtTotalLaunched.Invoke(); 
@@ -162,7 +163,7 @@ public class SpawnController : MonoBehaviour
         {
 
             RewardController.CreateReward(waves[waveNumber].reward, lastObject.transform);
-       //     Debug.Log("wave.name: " + waves[waveNumber].name); 
+            GameController.instance.Log("Killed wave " + waves[waveNumber].name); 
             if(waves[waveNumber].methodAtAllDestroyed.GetPersistentEventCount() > 0 )
             {
                 waves[waveNumber].methodAtAllDestroyed.Invoke();

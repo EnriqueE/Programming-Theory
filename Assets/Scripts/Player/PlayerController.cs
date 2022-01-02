@@ -93,16 +93,25 @@ public class PlayerController : MonoBehaviour
     }
     public void Hit(int damage)
     {
+       // GameController.instance.Log("Player hit, damage: " + damage); 
         if(hitClip)
         {
             audioSource.PlayOneShot(hitClip); 
         }
         GetComponent<CameraShake>().enabled = true;
         health -= damage;
+        if(health<0)
+        {
+            health = 0;
+            Death(); 
+        }
         uIGameController.UpdateUIInfo();
 
     }
-
+    private void Death()
+    {
+        GameController.instance.Log("¡Player Down!");
+    }
     private void HandleMovement()
     {
         

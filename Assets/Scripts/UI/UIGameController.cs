@@ -6,6 +6,7 @@ using TMPro;
 public class UIGameController : MonoBehaviour
 {
     public GameObject debugPanel;
+    public TMP_Text debugText; 
     public TMP_Text healthText;
     public TMP_Text weaponLevelText;
     public TMP_Text scoreText; 
@@ -22,7 +23,17 @@ public class UIGameController : MonoBehaviour
             healthText.text = playerController.health.ToString();
             weaponLevelText.text = (playerController.currentWeaponLevel + 1).ToString();
        
-        scoreText.text = GameController.instance.score.ToString(); 
+            scoreText.text = GameController.instance.score.ToString(); 
 
     }
+
+    private void Update()
+    {
+        
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            debugPanel.SetActive(!debugPanel.activeSelf);
+        }
+    }
+  
 }

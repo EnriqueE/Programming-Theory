@@ -68,8 +68,8 @@ public class Enemy : MonoBehaviour
     }
     public virtual void Death()
     {
-        GameController.instance.AddScore(health); 
-
+        GameController.instance.AddScore(health);
+        GameController.instance.Log("Enemy Down: " + name + "(" + health + ")");
         // Audio Explision
         if (explosionClip) { 
             AudioController.instance.Play(explosionClip);

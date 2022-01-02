@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro; 
+
 
 public class GameController : MonoBehaviour
 {
@@ -16,9 +18,10 @@ public class GameController : MonoBehaviour
     public int score = 0;
     public int scoreMultiplier = 10;
     [Header("Rewards")]
-    public GameObject weaponRewardPrefab; 
+    public GameObject weaponRewardPrefab;
     [Space(10)]
-    private UIGameController uIGameController; 
+    private UIGameController uIGameController;
+    public TMP_Text debugText; 
     public string UserName
     {
         set
@@ -37,17 +40,21 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public Text debugGameStateText;
-    public Text debugGeneralPurposeText1;
-    public Text debugGeneralPurposeText2;
-    public Text debugGeneralPurposeText3;
+    public void Log(string text)
+    {
+       
+        if (debugText)
+        {
+            debugText.text += "\n" + text;
+        }
+    }
 
     public class Record
     {
         public string username;
         public int score;
     }
-    private GameState gameState = GameState.intro;
+    public GameState gameState = GameState.intro;
     public enum GameState { intro, startMenu, play, gameOver }
 
     public void AddScore(int newScore) {
@@ -61,7 +68,7 @@ public class GameController : MonoBehaviour
             uIGameController.UpdateUIInfo();
         }
     }
-    
+   
     private void Awake()
     {
         if (instance != null)
@@ -78,10 +85,11 @@ public class GameController : MonoBehaviour
     }
     public void SetGameState(GameState newGameState)
     {
+       // Log("Game state changed, now: " + newGameState.ToString()); 
         gameState = newGameState;
-        if(debugGameStateText) {
+      /*  if(debugGameStateText) {
             debugGameStateText.text = gameState.ToString(); 
-        }
+        }*/
         
     }
     public GameState GetGameSate()

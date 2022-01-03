@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using PathCreation.Examples;
+using PathCreation;
 
 [RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
@@ -15,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private AudioSource audioSource; 
     public AudioClip hitClip;
     private UIGameController uIGameController;
+    public PathCreator pathCreator;
+    public PathFollower pathFollower; 
     [Serializable]
     public struct WeaponData
     {
@@ -54,10 +57,22 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        uIGameController = GameObject.Find("UI").GetComponent<UIGameController>(); 
+        pathCreator = GetComponent<PathCreator>();
+        pathFollower = GetComponent<PathFollower>();    
+        uIGameController = GameObject.Find("UI").GetComponent<UIGameController>();        
         audioSource = GetComponent<AudioSource>(); 
         LoadWeaponLevel(currentWeaponLevel);
-       
+
+
+        Vector3[] points = { 
+            new Vector3(3,3,0) , 
+            new Vector3(5,3,0),
+            new Vector3(6,4,0) 
+        }; 
+        
+        pathCreator.bezierPath = new BezierPath(points,false,PathSpace.xyz);
+        pathFollower.pathCreator = pathCreator; 
+
     }
     
     private void Update()
@@ -157,4 +172,5 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+   
 }

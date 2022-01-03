@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
     [Space(10)]
     private UIGameController uIGameController;
     public TMP_Text debugText; 
+    
     public string UserName
     {
         set

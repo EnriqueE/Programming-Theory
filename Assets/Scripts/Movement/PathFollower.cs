@@ -9,7 +9,10 @@ namespace PathCreation.Examples
         public PathCreator pathCreator;
         public EndOfPathInstruction endOfPathInstruction;
         public float speed = 5;
-        public bool applyRotation = false; 
+        public float time; 
+        public bool applyRotation = false;
+        public Vector3 offsetRotation;
+        public AnimationCurve speedCurve; 
         float distanceTravelled;
 
         void Start() {
@@ -24,11 +27,16 @@ namespace PathCreation.Examples
         {
             if (pathCreator != null)
             {
+                // float factor = 0.3f; 
+                // speed = AnimationCurve.Linear(speedCurve.Evaluate(factor),);
+                //Debug.Log("Disatnce traveled: " + distanceTravelled); 
                 distanceTravelled += speed * Time.deltaTime;
+                //BezierPath beizerPath = new BezierPath(); 
                 transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
                 if (applyRotation)
                 {
                     transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
+                    transform.Rotate(offsetRotation); 
                 }
             }
         }

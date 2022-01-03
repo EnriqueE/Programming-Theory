@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip hitClip;
     private UIGameController uIGameController;
     public PathCreator pathCreator;
-    public PathFollower pathFollower; 
+    private PathFollower pathFollower; 
     [Serializable]
     public struct WeaponData
     {
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        pathCreator = GetComponent<PathCreator>();
+       // pathCreator = GetComponent<PathCreator>();
         pathFollower = GetComponent<PathFollower>();    
         uIGameController = GameObject.Find("UI").GetComponent<UIGameController>();        
         audioSource = GetComponent<AudioSource>(); 
@@ -65,12 +65,15 @@ public class PlayerController : MonoBehaviour
 
 
         Vector3[] points = { 
-            new Vector3(3,3,0) , 
-            new Vector3(5,3,0),
-            new Vector3(6,4,0) 
+            new Vector3(0,-2,0) , 
+            new Vector3(0,2,0),
+            new Vector3(0,0,-11) 
         }; 
         
         pathCreator.bezierPath = new BezierPath(points,false,PathSpace.xyz);
+        pathCreator.bezierPath.SetAnchorNormalAngle(2, 180);
+        
+        pathCreator.bezierPath.GlobalNormalsAngle = 90;  
         pathFollower.pathCreator = pathCreator; 
 
     }
@@ -125,7 +128,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Death()
     {
-        GameController.instance.Log("¡Player Down!");
+        GameController.instance.Log("?Player Down!");
     }
     private void HandleMovement()
     {

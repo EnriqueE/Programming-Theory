@@ -14,6 +14,7 @@ namespace PathCreation.Examples
         public Vector3 offsetRotation;
         public AnimationCurve speedCurve; 
         float distanceTravelled;
+        float currentTime = 0; 
 
         void Start() {
             if (pathCreator != null)
@@ -27,17 +28,18 @@ namespace PathCreation.Examples
         {
             if (pathCreator != null)
             {
-                // float factor = 0.3f; 
-                // speed = AnimationCurve.Linear(speedCurve.Evaluate(factor),);
-                //Debug.Log("Disatnce traveled: " + distanceTravelled); 
-                distanceTravelled += speed * Time.deltaTime;
-                //BezierPath beizerPath = new BezierPath(); 
-                transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
-                if (applyRotation)
-                {
+                 float factor = 0.3f;
+                currentTime += Time.deltaTime; 
+                 float m_speed = speedCurve.Evaluate(currentTime);
+                 //Debug.Log("Disatnce traveled: " + distanceTravelled); 
+                 distanceTravelled += m_speed;
+                 //BezierPath beizerPath = new BezierPath(); 
+                 transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
+                 if (applyRotation)
+                 {
                     transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
                     transform.Rotate(offsetRotation); 
-                }
+                 }
             }
         }
 

@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float speed;
     public int damage;
-    private float boundaryTop = 9.0f;
+    private float boundaryTop = 8.0f;
     private float boundaryBottom = -5.0f;
     private float boundaryHorizontal = 11.0f;    
     public GameObject bulletParticleSystem;    
@@ -87,7 +87,7 @@ public class Bullet : MonoBehaviour
         DestroyBullet();
        
     }
-    private void TryToDestroyPool()
+    private protected void TryToDestroyPool()
     {
         PoolController poolController = transform.parent.GetComponent<PoolController>(); 
         if (poolController && poolController.isPendingDestroy())

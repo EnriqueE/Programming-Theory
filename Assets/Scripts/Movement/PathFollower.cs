@@ -8,6 +8,7 @@ namespace PathCreation.Examples
     {
         public PathCreator pathCreator;
         public EndOfPathInstruction endOfPathInstruction;
+
         [Header("Speed")]
         public float speed = 5;
         [SerializeField] private int speedMultiplier = 100;

@@ -17,7 +17,14 @@ public class PlayerController : MonoBehaviour
     public AudioClip hitClip;
     private UIGameController uIGameController;
     public PathCreator pathCreator;
-    private PathFollower pathFollower; 
+    private PathFollower pathFollower;
+    
+    
+    public GameObject bodyGroup;
+    public GameObject weaponsGroup;
+    public GameObject enginesGroup;
+    public GameObject accesoriesGroup;
+    public GameObject explosionsGroup;
     [Serializable]
     public struct WeaponData
     {
@@ -44,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Weapon Leveling")]
     public int currentWeaponLevel = 0;
-   
+    public bool startWithMaxWeaponLevel = false; 
     public List<WeaponLevel> weaponLevels = new List<WeaponLevel>(); 
     [Space(10)]
 
@@ -57,12 +64,15 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        GameController.instance.SetGameState(GameController.GameState.play); 
+        if (startWithMaxWeaponLevel)
+            currentWeaponLevel = weaponLevels.Count -1 ; 
        // pathCreator = GetComponent<PathCreator>();
       //  pathFollower = GetComponent<PathFollower>();    
         uIGameController = GameObject.Find("UI").GetComponent<UIGameController>();        
         audioSource = GetComponent<AudioSource>(); 
         LoadWeaponLevel(currentWeaponLevel);
-        LevelUp(); 
+       // LevelUp(); 
         /*
 
         Vector3[] points = { 
@@ -96,9 +106,12 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
+        if(GameController.instance.GetGameSate() == GameController.GameState.play)
+        {
+            HandleRotation();
+            HandleMovement();
+        }
         
-        HandleRotation();
-        HandleMovement(); 
 
     }
     public void LevelUp()
@@ -172,6 +185,17 @@ public class PlayerController : MonoBehaviour
     private void Death()
     {
         GameController.instance.Log("?Player Down!");
+        GameController.instance.SetGameState(GameController.GameState.gameOver); 
+        bodyGroup.SetActive(false);
+        weaponsGroup.SetActive(false);
+        enginesGroup.SetActive(false);
+        accesoriesGroup.SetActive(false);
+        ParticleSystem[] particleSystems = GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem particle in particleSystems)
+        {
+            particle.Play();
+        }
+        
     }
     private void HandleMovement()
     {

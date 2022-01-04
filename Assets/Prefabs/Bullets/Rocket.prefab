@@ -68,6 +68,9 @@ MonoBehaviour:
   lifeTime: 5
   explosionRadius: 1
   destroyOnBoundaries: 1
+  rocketPrefab: {fileID: 1980549123928864533}
+  fireParticleSystem: {fileID: 6331261319996454750}
+  smokeParticleSystem: {fileID: 4769185800403565109}
 --- !u!114 &-2558480108021117688
 MonoBehaviour:
   m_ObjectHideFlags: 0

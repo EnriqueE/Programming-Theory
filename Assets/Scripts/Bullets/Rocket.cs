@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +7,16 @@ public class Rocket : Bullet
     public float lifeTime = 5.0f;
     public float explosionRadius = 1.0f;
     public bool destroyOnBoundaries = false;
+    public GameObject rocketPrefab; 
+    public ParticleSystem fireParticleSystem;
+    public ParticleSystem smokeParticleSystem; 
     private GameObject target;
+    private float initSpeed;
 
     new void Start()
     {
-        transform.rotation = Quaternion.identity;        
+        transform.rotation = Quaternion.identity;
+        initSpeed = speed; 
       //  StartFollowing();
         base.Start();
        
@@ -79,6 +85,27 @@ public class Rocket : Bullet
        // Debug.Log("Target: " + target.name);
         if (target) GetComponent<FollowTarget>().StartFollow(target);
     }
-   
+    public override void DestroyBullet()
+    {
+        //base.DestroyBullet(); 
+        //gameObject.SetActive(false);
+        speed = 0;
+        rocketPrefab.SetActive(false);
+        fireParticleSystem.Stop();
+        smokeParticleSystem.Stop(); 
+        StartCoroutine("DestroyBulletAfterSeconds"); 
+        
+
+    }
+    IEnumerator  DestroyBulletAfterSeconds()
+    {
+        yield return new WaitForSeconds(1);
+        speed = initSpeed;
+        rocketPrefab.SetActive(true);
+        gameObject.SetActive(false); 
+        TryToDestroyPool();
+        yield return null; 
+    }
+
 
 }

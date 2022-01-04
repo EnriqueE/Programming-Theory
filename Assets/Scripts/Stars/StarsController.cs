@@ -30,6 +30,7 @@ public class StarsController : MonoBehaviour
            
         }
     }
+    
     private void InstantiateStar(ParticleSystem prefab, float size, float speed,  int quantity, float origin, float destination, float spawnPosition)
     {
         ParticleSystem starPS = Instantiate(prefab, transform);

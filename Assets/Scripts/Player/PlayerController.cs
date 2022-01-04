@@ -58,23 +58,36 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
        // pathCreator = GetComponent<PathCreator>();
-        pathFollower = GetComponent<PathFollower>();    
+      //  pathFollower = GetComponent<PathFollower>();    
         uIGameController = GameObject.Find("UI").GetComponent<UIGameController>();        
         audioSource = GetComponent<AudioSource>(); 
         LoadWeaponLevel(currentWeaponLevel);
-
+        LevelUp(); 
+        /*
 
         Vector3[] points = { 
-            new Vector3(0,-2,0) , 
-            new Vector3(0,2,0),
-            new Vector3(0,0,-11) 
-        }; 
-        
+            transform.position,
+            new Vector3(transform.position.x, transform.position.y+1, transform.position.z),
+            new Vector3(transform.position.x, transform.position.y+2, transform.position.z),
+            new Vector3(0, transform.position.y+4, transform.position.z),
+
+            new Vector3(0,0,-11),
+          
+
+        };
+        Debug.Log(points.Length); 
         pathCreator.bezierPath = new BezierPath(points,false,PathSpace.xyz);
-        pathCreator.bezierPath.SetAnchorNormalAngle(2, 180);
+        pathCreator.bezierPath.SetAnchorNormalAngle(0, 270);
+        pathCreator.bezierPath.SetAnchorNormalAngle(1, 270);
+        pathCreator.bezierPath.SetAnchorNormalAngle(2, 270);
+        pathCreator.bezierPath.SetAnchorNormalAngle(3, 90);
+        pathCreator.bezierPath.SetAnchorNormalAngle(4, 90);
         
-        pathCreator.bezierPath.GlobalNormalsAngle = 90;  
-        pathFollower.pathCreator = pathCreator; 
+        
+
+        pathCreator.bezierPath.GlobalNormalsAngle = 90;
+        pathCreator.bezierPath.NotifyPathModified(); 
+        pathFollower.pathCreator = pathCreator; */
 
     }
     
@@ -87,6 +100,36 @@ public class PlayerController : MonoBehaviour
         HandleRotation();
         HandleMovement(); 
 
+    }
+    public void LevelUp()
+    {
+        MoveToPos moveToPos = gameObject.AddComponent<MoveToPos>();
+        moveToPos.StartMoving(new Vector3(0, 0.88f, -8.5f), 3f, MoveToPos.EassingEffects.cubicEaseInOut);
+        moveToPos.destroyComponentAtFinish = true;
+        moveToPos.enableAtStart = true;
+        //moveToPos.rotation.y = 359f;
+
+        ForceEnginesOn(EngineController.KeyTriggerType.forward);
+
+    }
+    public void ForceEnginesOn(EngineController.KeyTriggerType trigger)
+    {
+        EngineController[] engines = GetComponentsInChildren<EngineController>();
+        foreach (EngineController engine in engines)
+        {
+            if(engine.mainPSTrigger == trigger)
+            {
+                engine.mainPSTrigger = EngineController.KeyTriggerType.allwaysOn; 
+            }
+        }
+    }
+    public void ForceEnginesOff()
+    {
+        EngineController[] engines = GetComponentsInChildren<EngineController>();
+        foreach(EngineController engine in engines)
+        {
+            engine.mainPSTrigger = engine.initMainKeyTriggerType; 
+        }
     }
     private void HandleRotation()
     {

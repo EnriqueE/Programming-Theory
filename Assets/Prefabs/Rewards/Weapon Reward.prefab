@@ -4952,7 +4952,7 @@ MonoBehaviour:
   speed: {x: 1, y: 0.1}
   horiztonalBoundary: 9
   bottomBoundary: -5
-  timeAlive: 10
+  timeAlive: 15
   collectParticleSystem: {fileID: 1679602944}
   delayToDisapearWhenCollect: 0
   disapearingTimeWhenCollect: 0.6

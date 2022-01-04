@@ -14,7 +14,7 @@ public class EngineController : MonoBehaviour
     public float mainPSParticleSize = 0.005f;
     public float mainPSParticleSpeed = 5.0f;
     public float mainPSParticleLifeTime = 0.22f; 
-    public keyTriggerType mainPSTrigger = keyTriggerType.forward;
+    public KeyTriggerType mainPSTrigger = KeyTriggerType.forward;
     [Space(3)]
 
     [Header("Trail Particle System")]
@@ -25,21 +25,21 @@ public class EngineController : MonoBehaviour
     public float trailPSParticleSize = 0.005f;
     public float trailPSParticleSpeed = 5.0f;
     public float trailPSParticleLifeTime = 0.22f;
-    public keyTriggerType trailPSTrigger = keyTriggerType.forward;
+    public KeyTriggerType trailPSTrigger = KeyTriggerType.forward;
 
 
     [Header("Light")]
     public bool enabledLight = false; 
     public Light bulletLight;
     public Color lightColor;
-    public keyTriggerType lightTrigger; 
+    public KeyTriggerType lightTrigger;
     [Space(3)]
-    
 
+    public KeyTriggerType initMainKeyTriggerType; 
     private float inputX;
     private float inputY;
     private bool val;
-    public enum keyTriggerType { 
+    public enum KeyTriggerType { 
         allwaysOn,
         forward, 
         backward, 
@@ -48,6 +48,8 @@ public class EngineController : MonoBehaviour
 
     private void Start()
     {
+        initMainKeyTriggerType = mainPSTrigger; 
+
         mainPS.startLifetime = mainPSParticleLifeTime;
         mainPS.startSpeed = mainPSParticleSpeed;
         mainPS.startSize = mainPSParticleSize;
@@ -75,11 +77,11 @@ public class EngineController : MonoBehaviour
         {
             switch (mainPSTrigger)
             {
-                case keyTriggerType.allwaysOn: val = true; break; 
-                case keyTriggerType.forward: val = inputY > 0 ? true : false; break;
-                case keyTriggerType.backward: val = inputY < 0 ? true : false; break;
-                case keyTriggerType.right: val = inputX > 0 ? true : false; break;
-                case keyTriggerType.left: val = inputX > 0 ? true : false; break;
+                case KeyTriggerType.allwaysOn: val = true; break; 
+                case KeyTriggerType.forward: val = inputY > 0 ? true : false; break;
+                case KeyTriggerType.backward: val = inputY < 0 ? true : false; break;
+                case KeyTriggerType.right: val = inputX > 0 ? true : false; break;
+                case KeyTriggerType.left: val = inputX > 0 ? true : false; break;
             }
             MainPSEnabled(val);
         }
@@ -88,11 +90,11 @@ public class EngineController : MonoBehaviour
         {
             switch (trailPSTrigger)
             {
-                case keyTriggerType.allwaysOn: val = true; break;
-                case keyTriggerType.forward: val = inputY > 0 ? true : false; break;
-                case keyTriggerType.backward: val = inputY < 0 ? true : false; break;
-                case keyTriggerType.right: val = inputX > 0 ? true : false; break;
-                case keyTriggerType.left: val = inputX > 0 ? true : false; break;
+                case KeyTriggerType.allwaysOn: val = true; break;
+                case KeyTriggerType.forward: val = inputY > 0 ? true : false; break;
+                case KeyTriggerType.backward: val = inputY < 0 ? true : false; break;
+                case KeyTriggerType.right: val = inputX > 0 ? true : false; break;
+                case KeyTriggerType.left: val = inputX > 0 ? true : false; break;
             }
             TrailPSEnabled(val);
         }
@@ -101,11 +103,11 @@ public class EngineController : MonoBehaviour
         {
             switch (lightTrigger)
             {
-                case keyTriggerType.allwaysOn: val = true; break;
-                case keyTriggerType.forward: val = inputY > 0 ? true : false; break;
-                case keyTriggerType.backward: val = inputY < 0 ? true : false; break;
-                case keyTriggerType.right: val = inputX > 0 ? true : false; break;
-                case keyTriggerType.left: val = inputX > 0 ? true : false; break;
+                case KeyTriggerType.allwaysOn: val = true; break;
+                case KeyTriggerType.forward: val = inputY > 0 ? true : false; break;
+                case KeyTriggerType.backward: val = inputY < 0 ? true : false; break;
+                case KeyTriggerType.right: val = inputX > 0 ? true : false; break;
+                case KeyTriggerType.left: val = inputX > 0 ? true : false; break;
             }
             bulletLight.gameObject.SetActive(val);
         }

@@ -934,7 +934,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160404820}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: -8.51, y: 4.02, z: 0}
   m_LocalScale: {x: 0.56272, y: 0.56272, z: 0.56272}
   m_Children:
   - {fileID: 214046816}
@@ -1086,36 +1086,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 0}
   endOfPathInstruction: 0
-  speed: 4
-  time: 3
-  applyRotation: 1
-  offsetRotation: {x: 90, y: 0, z: 0}
+  speed: 5.34
+  speedMultiplier: 100
+  enableSpeedCurve: 1
   speedCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.096837126
-      value: 0.6286639
-      inSlope: 2.8097668
-      outSlope: 2.8097668
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.0038399994
-      value: 0.91154313
-      inSlope: 0.33416128
-      outSlope: 0.33416128
+      time: -0.0023855865
+      value: 0.00041031837
+      inSlope: 0.029072963
+      outSlope: 0.029072963
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.21782178
+      outWeight: 0.074553974
     - serializedVersion: 3
-      time: 0.9819336
-      value: 0.7879677
-      inSlope: -0.12634318
-      outSlope: -0.12634318
+      time: 0.37058902
+      value: 0.8570442
+      inSlope: 0.039473847
+      outSlope: 0.039473847
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.13239585
+    - serializedVersion: 3
+      time: 2.296568
+      value: 0.9683707
+      inSlope: 0.057802532
+      outSlope: 0.057802532
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -1123,6 +1122,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  time: 5
+  applyRotation: 1
+  offsetRotation: {x: 90, y: 0, z: 0}
 --- !u!1 &191166377 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 05048961ad8514d16a1ba4c31fbc9707, type: 3}
@@ -4332,7 +4334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1408948056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4350,6 +4352,59 @@ MonoBehaviour:
   spawnPositionY: 8
   weaponRewardPrefab: {fileID: 4699515183913008213, guid: 07699b5eab81f4c8d8e1e6b0819c8ca3, type: 3}
   waves:
+  - name: Path S Ovnis Easy
+    enabled: 1
+    enemies:
+    - name: Ovni
+      prefab: {fileID: -1839073305889195270, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
+      health: 10
+      updateWeaponData: 1
+      weaponData:
+        damage: 1
+        maxElements: 3
+        delay: 1
+        startDelay: 1
+        speed: 1
+    randomEnemies: 1
+    movementType: 1
+    infiniteDownSpeed: 0
+    path: {fileID: 8021171022761618445, guid: c707c8abcd3364766af290bba23e74f1, type: 3}
+    endOfPathInstruction: 0
+    reward: 2
+    quantity: 2
+    initDelay: 0
+    rate: 0.5
+    speed: 2
+    methodAtTotalLaunched:
+      m_PersistentCalls:
+        m_Calls: []
+    methodAtAllDestroyed:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1408948056}
+          m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
+          m_MethodName: LaunchNextWave
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - name: One Down
     enabled: 1
     enemies:
@@ -4738,59 +4793,6 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - name: Path S Ovnis Easy
-    enabled: 1
-    enemies:
-    - name: Ovni
-      prefab: {fileID: -1839073305889195270, guid: ef9d348484e264890ac1f4619c6d5817, type: 3}
-      health: 10
-      updateWeaponData: 1
-      weaponData:
-        damage: 1
-        maxElements: 3
-        delay: 1
-        startDelay: 1
-        speed: 1
-    randomEnemies: 1
-    movementType: 1
-    infiniteDownSpeed: 0
-    path: {fileID: 8021171022761618445, guid: c707c8abcd3364766af290bba23e74f1, type: 3}
-    endOfPathInstruction: 0
-    reward: 2
-    quantity: 2
-    initDelay: 0
-    rate: 0.5
-    speed: 2
-    methodAtTotalLaunched:
-      m_PersistentCalls:
-        m_Calls: []
-    methodAtAllDestroyed:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1408948056}
-          m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
-          m_MethodName: LaunchNextWave
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: SpawnController, Assembly-CSharp
-          m_MethodName: 
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -5898,7 +5900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1779464030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5918,7 +5920,9 @@ MonoBehaviour:
       - {x: -1, y: 0.5, z: 0}
       - {x: 1, y: -0.5, z: 0}
       - {x: 2, y: 0, z: 0}
-      isClosed: 0
+      - {x: 3.7888544, y: 0.8944272, z: 0}
+      - {x: -3.7888544, y: -0.8944272, z: 0}
+      isClosed: 1
       space: 0
       controlMode: 0
       autoControlLength: 0.3
@@ -5931,7 +5935,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 90
       flipNormals: 0
-    vertexPathUpToDate: 1
+    vertexPathUpToDate: 0
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -5939,12 +5943,12 @@ MonoBehaviour:
     showPerSegmentBounds: 0
     displayAnchorPoints: 1
     displayControlPoints: 1
-    bezierHandleScale: 1
+    bezierHandleScale: 2.63
     globalDisplaySettingsFoldout: 0
     keepConstantHandleSize: 0
     showNormalsInVertexMode: 0
     showBezierPathInVertexMode: 0
-    showDisplayOptions: 0
+    showDisplayOptions: 1
     showPathOptions: 1
     showVertexPathDisplayOptions: 0
     showVertexPathOptions: 1
@@ -6826,15 +6830,17 @@ MonoBehaviour:
   pathCreator: {fileID: 8021171022761618445, guid: c707c8abcd3364766af290bba23e74f1, type: 3}
   endOfPathInstruction: 2
   speed: 3
-  time: 0
-  applyRotation: 0
-  offsetRotation: {x: 0, y: 0, z: 0}
+  speedMultiplier: 100
+  enableSpeedCurve: 0
   speedCurve:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  time: 0
+  applyRotation: 0
+  offsetRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &2138847435
 GameObject:
   m_ObjectHideFlags: 0
@@ -6912,6 +6918,10 @@ PrefabInstance:
     - target: {fileID: 3579361769974807841, guid: b1c3fb743351a8c4aabf2324123a6d53, type: 3}
       propertyPath: mainPSTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3579361769974807841, guid: b1c3fb743351a8c4aabf2324123a6d53, type: 3}
+      propertyPath: enabledTrailPS
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3579361769974807841, guid: b1c3fb743351a8c4aabf2324123a6d53, type: 3}
       propertyPath: mainPSEmissionRate

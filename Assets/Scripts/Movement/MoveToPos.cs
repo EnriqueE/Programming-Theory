@@ -12,7 +12,10 @@ public class MoveToPos : MonoBehaviour
     private float currentTime;
     public bool enableAtStart = true;
     public bool disableAtFinish = false; 
-    public bool returnAtFinish = false; 
+    public bool returnAtFinish = false;
+    public bool destroyComponentAtFinish = false;
+    public Vector3 rotation;
+    private Quaternion initRotation; 
 
 
     private bool isMoving = false; 
@@ -23,8 +26,14 @@ public class MoveToPos : MonoBehaviour
         cubicEaseIn,
         cubicEaseOut
     }
-    public EassingEffects eassingEffect; 
-   
+    public EassingEffects eassingEffect;
+    private void Start()
+    {
+        if(enableAtStart)
+        {
+            StartMoving(newPos, totalTime, eassingEffect); 
+        }
+    }
     void Update()
     {
         if (isMoving)
@@ -57,6 +66,10 @@ public class MoveToPos : MonoBehaviour
                 {
                     gameObject.SetActive(false); 
                 }
+                if(destroyComponentAtFinish)
+                {
+                    Destroy(this); 
+                }
                 if(returnAtFinish)
                 {
                     transform.position = initPosition;
@@ -69,6 +82,7 @@ public class MoveToPos : MonoBehaviour
             } else
             {
                 transform.position = Vector3.Lerp(initPosition, newPos, factor);
+                transform.rotation = Quaternion.Lerp(initRotation, Quaternion.Euler(rotation), factor); 
             }
             
         }
@@ -84,6 +98,7 @@ public class MoveToPos : MonoBehaviour
         initTime = Time.time; 
         totalTime = time; 
         initPosition = transform.position;
+        initRotation = transform.rotation; 
         isMoving = true;
         //Debug.Log("Moving " + transform.name + " from " + initPosition + " to " + newPosition + " in " + time + " seconds."); 
 

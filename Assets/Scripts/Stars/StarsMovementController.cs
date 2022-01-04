@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class StarsMovementController : MonoBehaviour
 {
-    private float speed;
+    public float speed;
     private float quantity; 
     private float origin;
     private float destination;
     private float spawnPosition; 
     private bool isMoving = false;
+    private StarsController starsController; 
 
     
     public void Initialize(float newSpeed, int newQuantity, float newOrigin, float newDestination, float newSpawnPosition)
@@ -32,11 +33,15 @@ public class StarsMovementController : MonoBehaviour
         isMoving = true;
         
     }
+    private void Start()
+    {
+        starsController = GetComponentInParent<StarsController>();
+    }
     private void Update()
     {
         if (isMoving)
         {
-            transform.Translate(Vector3.back * speed * Time.deltaTime);
+            transform.Translate(Vector3.back * speed * starsController.globalSpeed * Time.deltaTime);
             if (transform.position.y < destination)
             {
                 transform.position = new Vector3(transform.position.x,spawnPosition,transform.position.z);

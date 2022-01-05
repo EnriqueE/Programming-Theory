@@ -11,6 +11,7 @@ public class UIGameController : MonoBehaviour
     public TMP_Text weaponLevelText;
     public TMP_Text scoreText; 
     private PlayerController playerController;
+    public GameObject gameOverPanel; 
 
     private void Awake()
     {

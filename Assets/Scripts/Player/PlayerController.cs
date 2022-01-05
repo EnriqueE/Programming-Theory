@@ -10,16 +10,17 @@ public class PlayerController : MonoBehaviour
 {
     public int health = 100;
     public float maxAngleRotation = 0.4f;
-    public float returnAngleSpeed = 0.05f; 
+    public float returnAngleSpeed = 0.05f;
     public float rotationSpeed;
     public Vector2 speed = new Vector2(1, 1);
-    private AudioSource audioSource; 
+    private AudioSource audioSource;
     public AudioClip hitClip;
     private UIGameController uIGameController;
     public PathCreator pathCreator;
     private PathFollower pathFollower;
-    
-    
+
+
+
     public GameObject bodyGroup;
     public GameObject weaponsGroup;
     public GameObject enginesGroup;
@@ -39,40 +40,41 @@ public class PlayerController : MonoBehaviour
 
     [Serializable]
     public struct WeaponLevel
-    {       
+    {
         public List<WeaponData> weapons;
     }
 
     [Header("Baundaries")]
     public float boundaryTop = 5.0f;
-    public float boundaryBottom = -3.0f; 
+    public float boundaryBottom = -3.0f;
     public float boundaryHorizontal = 9.0f;
     [Space(10)]
 
     [Header("Weapon Leveling")]
     public int currentWeaponLevel = 0;
-    public bool startWithMaxWeaponLevel = false; 
-    public List<WeaponLevel> weaponLevels = new List<WeaponLevel>(); 
+    public bool startWithMaxWeaponLevel = false;
+    public List<WeaponLevel> weaponLevels = new List<WeaponLevel>();
     [Space(10)]
 
 
 
-    private float horizontalInput;
-    private float verticalInput;
+    public float horizontalInput;
+    public float verticalInput;
     private Vector3 rotation;
     private float minRotationYToRestart = 0.001f;
 
     private void Start()
     {
-        GameController.instance.SetGameState(GameController.GameState.play); 
+
+        GameController.instance.SetGameState(GameController.GameState.play);
         if (startWithMaxWeaponLevel)
-            currentWeaponLevel = weaponLevels.Count -1 ; 
-       // pathCreator = GetComponent<PathCreator>();
-      //  pathFollower = GetComponent<PathFollower>();    
-        uIGameController = GameObject.Find("UI").GetComponent<UIGameController>();        
-        audioSource = GetComponent<AudioSource>(); 
+            currentWeaponLevel = weaponLevels.Count - 1;
+        // pathCreator = GetComponent<PathCreator>();
+        //  pathFollower = GetComponent<PathFollower>();    
+        uIGameController = GameObject.Find("UI").GetComponent<UIGameController>();
+        audioSource = GetComponent<AudioSource>();
         LoadWeaponLevel(currentWeaponLevel);
-       // LevelUp(); 
+        // LevelUp(); 
         /*
 
         Vector3[] points = { 
@@ -100,20 +102,21 @@ public class PlayerController : MonoBehaviour
         pathFollower.pathCreator = pathCreator; */
 
     }
-    
-    private void Update()
+
+    private void FixedUpdate()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+          horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        if(GameController.instance.GetGameSate() == GameController.GameState.play)
+        if (GameController.instance.GetGameSate() == GameController.GameState.play)
         {
             HandleRotation();
             HandleMovement();
         }
-        
+
 
     }
+    
     public void LevelUp()
     {
         MoveToPos moveToPos = gameObject.AddComponent<MoveToPos>();
@@ -130,23 +133,23 @@ public class PlayerController : MonoBehaviour
         EngineController[] engines = GetComponentsInChildren<EngineController>();
         foreach (EngineController engine in engines)
         {
-            if(engine.mainPSTrigger == trigger)
+            if (engine.mainPSTrigger == trigger)
             {
-                engine.mainPSTrigger = EngineController.KeyTriggerType.allwaysOn; 
+                engine.mainPSTrigger = EngineController.KeyTriggerType.allwaysOn;
             }
         }
     }
     public void ForceEnginesOff()
     {
         EngineController[] engines = GetComponentsInChildren<EngineController>();
-        foreach(EngineController engine in engines)
+        foreach (EngineController engine in engines)
         {
-            engine.mainPSTrigger = engine.initMainKeyTriggerType; 
+            engine.mainPSTrigger = engine.initMainKeyTriggerType;
         }
     }
     private void HandleRotation()
     {
-        float m_horizontalInput = horizontalInput; 
+        float m_horizontalInput = horizontalInput;
         if (horizontalInput != 0 || transform.rotation.y != 0)
         {
             if (horizontalInput == 0)
@@ -164,20 +167,23 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        transform.position = new Vector3(
+            transform.position.x,
+            transform.position.y, 0);
     }
     public void Hit(int damage)
     {
-       // GameController.instance.Log("Player hit, damage: " + damage); 
-        if(hitClip)
+        // GameController.instance.Log("Player hit, damage: " + damage); 
+        if (hitClip)
         {
-            audioSource.PlayOneShot(hitClip); 
+            audioSource.PlayOneShot(hitClip);
         }
         GetComponent<CameraShake>().enabled = true;
         health -= damage;
-        if(health<0)
+        if (health <= 0)
         {
             health = 0;
-            Death(); 
+            Death();
         }
         uIGameController.UpdateUIInfo();
 
@@ -185,7 +191,7 @@ public class PlayerController : MonoBehaviour
     private void Death()
     {
         GameController.instance.Log("?Player Down!");
-        GameController.instance.SetGameState(GameController.GameState.gameOver); 
+        GameController.instance.SetGameState(GameController.GameState.gameOver);
         bodyGroup.SetActive(false);
         weaponsGroup.SetActive(false);
         enginesGroup.SetActive(false);
@@ -195,22 +201,30 @@ public class PlayerController : MonoBehaviour
         {
             particle.Play();
         }
-        
+
     }
     private void HandleMovement()
     {
-        
-        if(horizontalInput != 0 || verticalInput != 0) 
+
+       
+        if (horizontalInput != 0 || verticalInput != 0)
         {
-            transform.Translate(
-                Time.deltaTime * speed.x * horizontalInput, 
+            /* transform.Translate(
+                Time.deltaTime * speed.x * horizontalInput
                 Time.deltaTime * speed.y * verticalInput, 
-                0,Space.World);
+                0,Space.World);*/
+            transform.position = new Vector3(
+                transform.position.x + Time.deltaTime * speed.x * horizontalInput,
+                transform.position.y + Time.deltaTime * speed.y * verticalInput,
+                0);
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
         transform.position = new Vector3(
-            Mathf.Max(-boundaryHorizontal, Mathf.Min(boundaryHorizontal,transform.position.x)),
+            Mathf.Max(-boundaryHorizontal, Mathf.Min(boundaryHorizontal, transform.position.x)),
             Mathf.Max(boundaryBottom, Mathf.Min(boundaryTop, transform.position.y)),
-            transform.position.z);
+            0);
+        
+
     }
     private void LoadWeaponData(WeaponData weaponData)
     {
@@ -220,27 +234,27 @@ public class PlayerController : MonoBehaviour
         weapon.speed = weaponData.speed;
         weapon.startDelay = weaponData.startDelay;
         weapon.maxElements = weaponData.maxElements;
-        weapon.UpdatePoolProperties(weapon.damage, weapon.speed); 
+        weapon.UpdatePoolProperties(weapon.damage, weapon.speed);
         weaponData.weaponGameObject.gameObject.SetActive(true);
     }
     private void LoadWeaponLevel(int weaponLevelNumber)
     {
         // Disable all enabled Weapons of Player
         Weapon[] weapons = GetComponentsInChildren<Weapon>(true);
-        foreach(Weapon weapon in weapons) { weapon.gameObject.SetActive(false); }
+        foreach (Weapon weapon in weapons) { weapon.gameObject.SetActive(false); }
 
         // Enable weapon level weapons
-        foreach(WeaponData weaponData in weaponLevels[weaponLevelNumber].weapons) { LoadWeaponData(weaponData); }
-        uIGameController.UpdateUIInfo(); 
+        foreach (WeaponData weaponData in weaponLevels[weaponLevelNumber].weapons) { LoadWeaponData(weaponData); }
+        uIGameController.UpdateUIInfo();
     }
     public void LoadNextWeaponLevel()
     {
-        if(currentWeaponLevel < weaponLevels.Count - 1)
+        if (currentWeaponLevel < weaponLevels.Count - 1)
         {
             currentWeaponLevel++;
             LoadWeaponLevel(currentWeaponLevel);
         }
-        
+
     }
-   
+
 }

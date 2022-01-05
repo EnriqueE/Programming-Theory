@@ -5012,6 +5012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e9d01e7718d4bca80b0893b335b5d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
   damage: 1
   bulletParticleSystem: {fileID: 3912975380838559714}
 --- !u!136 &5683062353508175535
@@ -5024,10 +5025,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5000002
-  m_Height: 5.0755
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.2853897, z: -2.0185447e-15}
+  m_Radius: 0.62
+  m_Height: 4.3
+  m_Direction: 2
+  m_Center: {x: 0.03, y: 0, z: 0}
 --- !u!33 &310515737139610933
 MeshFilter:
   m_ObjectHideFlags: 0

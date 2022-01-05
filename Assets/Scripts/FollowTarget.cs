@@ -33,6 +33,7 @@ public class FollowTarget : MonoBehaviour
                 if (Time.time - initTime > delayTime)
                 {
                     Vector3 targetPosition = (target.transform.position - transform.position).normalized;
+                    Debug.DrawLine(transform.position, transform.position + targetPosition); 
                     float targetAngle = Mathf.Atan2(targetPosition.y, targetPosition.x) * Mathf.Rad2Deg - 90;
                     targetAngle = targetAngle < 0 ? targetAngle + 360 : targetAngle;
                     float distance = targetAngle - transform.eulerAngles.z;

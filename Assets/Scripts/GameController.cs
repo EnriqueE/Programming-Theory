@@ -86,16 +86,29 @@ public class GameController : MonoBehaviour
     }
     public void SetGameState(GameState newGameState)
     {
-       // Log("Game state changed, now: " + newGameState.ToString()); 
+        // Log("Game state changed, now: " + newGameState.ToString()); 
         gameState = newGameState;
-      /*  if(debugGameStateText) {
+        /*  if(debugGameStateText) {
             debugGameStateText.text = gameState.ToString(); 
         }*/
+        if(gameState==GameState.gameOver)
+        {
+            StartCoroutine("GameOver"); 
+            
+        }
         
     }
     public GameState GetGameSate()
     {
         return gameState; 
         
+    }
+    IEnumerator GameOver()
+    {
+        
+        yield return new WaitForSeconds(1f);
+        if (!uIGameController) uIGameController = GameObject.Find("UI").GetComponent<UIGameController>();
+        uIGameController.gameOverPanel.SetActive(true);
+        yield return null; 
     }
 }

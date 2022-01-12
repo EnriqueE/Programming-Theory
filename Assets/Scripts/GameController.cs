@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
     public int scoreMultiplier = 10;
     [Header("Rewards")]
     public GameObject weaponRewardPrefab;
+    public GameObject healthRewardPrefab; 
     [Space(10)]
     private UIGameController uIGameController;
     public TMP_Text debugText; 

@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; 
+using TMPro;
+using UnityEngine.UI;
 
 public class UIGameController : MonoBehaviour
 {
@@ -9,13 +10,13 @@ public class UIGameController : MonoBehaviour
     public TMP_Text debugText; 
     public TMP_Text healthText;
     public TMP_Text weaponLevelText;
-    public TMP_Text scoreText; 
+    public Text scoreText; 
     private PlayerController playerController;
     public GameObject gameOverPanel;
     public GameObject mainUIPanel;
 
     [Header("Lives")]
-    public GameObject livesPanel;
+    public GameObject healthPanel;
     public GameObject livesUnit;
     public GameObject livesUnitEmpty;
     public GameObject livesUnitRed; 
@@ -30,7 +31,7 @@ public class UIGameController : MonoBehaviour
         //Debug.Log(playerController.health.ToString());
 
         UpdateHealthInfo();
-        weaponLevelText.text = (playerController.currentWeaponLevel + 1).ToString();
+     //   weaponLevelText.text = (playerController.currentWeaponLevel + 1).ToString();
        
         scoreText.text = GameController.instance.score.ToString(); 
 
@@ -38,7 +39,7 @@ public class UIGameController : MonoBehaviour
     private void UpdateHealthInfo()
     {
         // Destroy all lives in livesPanel;
-        foreach (Transform child in livesPanel.transform)
+        foreach (Transform child in healthPanel.transform)
         {
             Destroy(child.gameObject);
         }
@@ -65,13 +66,13 @@ public class UIGameController : MonoBehaviour
                 prefab = livesUnitEmpty;
             }
            
-            GameObject liveUnitInstance = Instantiate(prefab, livesPanel.transform);
+            GameObject liveUnitInstance = Instantiate(prefab, healthPanel.transform);
             liveUnitInstance.transform.Translate(Vector3.right * i * width  );
             liveUnitInstance.transform.Translate(Vector3.left * health * width / 2);
         }
 
 
-        healthText.text = playerController.currentHealth.ToString();
+       // healthText.text = playerController.currentHealth.ToString();
     }
     private void Update()
     {

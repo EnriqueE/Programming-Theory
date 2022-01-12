@@ -9,7 +9,8 @@ public class Bullet : MonoBehaviour
     private float boundaryTop = 8.0f;
     private float boundaryBottom = -5.0f;
     private float boundaryHorizontal = 11.0f;    
-    public GameObject bulletParticleSystem;    
+    public GameObject bulletParticleSystem;
+    public AudioClip impactClip;
     public string parentName { set; get; } 
 
     public void Start()
@@ -76,7 +77,7 @@ public class Bullet : MonoBehaviour
     }
     public virtual void Collision(Collider other)
     {
-        
+        AudioController.instance.Play(impactClip);
         if (bulletParticleSystem)
         {
             bulletParticleSystem.SetActive(true);

@@ -206,6 +206,7 @@ MonoBehaviour:
   speed: 10
   damage: 1
   bulletParticleSystem: {fileID: 8512355302929491988}
+  impactClip: {fileID: 8300000, guid: fa338769411d0ae49a2fe935a72d3381, type: 3}
 --- !u!1 &8512355302929491988
 GameObject:
   m_ObjectHideFlags: 0

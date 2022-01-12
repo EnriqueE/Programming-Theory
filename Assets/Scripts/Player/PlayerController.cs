@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 speed = new Vector2(1, 1);
     private AudioSource audioSource;
     public AudioClip hitClip;
+    public AudioClip explosionClip; 
     private UIGameController uIGameController;
     public PathCreator pathCreator;
     private PathFollower pathFollower;
@@ -202,6 +203,7 @@ public class PlayerController : MonoBehaviour
         {
             particle.Play();
         }
+        audioSource.PlayOneShot(explosionClip); 
 
     }
     private void HandleMovement()

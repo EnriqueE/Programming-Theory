@@ -13,7 +13,8 @@ public class SpawnController : MonoBehaviour
     [SerializeField] private float spawnPositionY = 8.0f;
     private PlayerController playerController;
     [Header("Rewards")]
-    [SerializeField] private GameObject weaponRewardPrefab;
+    //[SerializeField] private GameObject weaponRewardPrefab;
+    //[SerializeField] private GameObject healthRewatdPrefab; 
     [Space(10)]
     [Header("Waves")]
     public Wave[] waves;
@@ -25,7 +26,7 @@ public class SpawnController : MonoBehaviour
     public struct Wave
     {
         public enum MovementType { infiniteDown, followPath }
-        public enum RewardType { none, random, weaponReward }
+        public enum RewardType { none, random, weaponReward, healthReward }
         public int id { get; set; }
         public string name;
         public bool enabled;               

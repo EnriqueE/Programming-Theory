@@ -9,6 +9,7 @@ using PathCreation;
 public class PlayerController : MonoBehaviour
 {
     public int health = 100;
+    public int currentHealth; 
     public float maxAngleRotation = 0.4f;
     public float returnAngleSpeed = 0.05f;
     public float rotationSpeed;
@@ -61,16 +62,16 @@ public class PlayerController : MonoBehaviour
     public float horizontalInput;
     public float verticalInput;
     private Vector3 rotation;
-    private float minRotationYToRestart = 0.001f;
+    private float minRotationYToRestart = 0.02f;
 
     private void Start()
     {
-
+        currentHealth = health; 
         GameController.instance.SetGameState(GameController.GameState.play);
         if (startWithMaxWeaponLevel)
             currentWeaponLevel = weaponLevels.Count - 1;
         // pathCreator = GetComponent<PathCreator>();
-        //  pathFollower = GetComponent<PathFollower>();    
+        // pathFollower = GetComponent<PathFollower>();    
         uIGameController = GameObject.Find("UI").GetComponent<UIGameController>();
         audioSource = GetComponent<AudioSource>();
         LoadWeaponLevel(currentWeaponLevel);
@@ -179,10 +180,10 @@ public class PlayerController : MonoBehaviour
             audioSource.PlayOneShot(hitClip);
         }
         GetComponent<CameraShake>().enabled = true;
-        health -= damage;
-        if (health <= 0)
+        currentHealth -= damage;
+        if (currentHealth <= 0)
         {
-            health = 0;
+            currentHealth = 0;
             Death();
         }
         uIGameController.UpdateUIInfo();
@@ -255,6 +256,12 @@ public class PlayerController : MonoBehaviour
             LoadWeaponLevel(currentWeaponLevel);
         }
 
+    }
+    public void IncreaseHealth()
+    {
+        health++;
+        currentHealth = health;
+        uIGameController.UpdateUIInfo(); 
     }
 
 }

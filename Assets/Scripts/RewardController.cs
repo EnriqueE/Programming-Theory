@@ -114,6 +114,10 @@ public class RewardController : MonoBehaviour
             }
         }
     }
+    public void IncreasePlayerHealt()
+    {
+        GameObject.Find("Player").GetComponent<PlayerController>().IncreaseHealth(); 
+    }
     public void LoadNextPlayerWeaponLevel()
     {
         GameObject.Find("Player").GetComponent<PlayerController>().LoadNextWeaponLevel(); 
@@ -133,6 +137,9 @@ public class RewardController : MonoBehaviour
                     prefab = GameController.instance.weaponRewardPrefab;
                 }
                 break;
+            case SpawnController.Wave.RewardType.healthReward:
+                prefab = GameController.instance.healthRewardPrefab; 
+                break; 
         }
         if (prefab)
         {

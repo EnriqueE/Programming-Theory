@@ -13,8 +13,6 @@ public class SpawnController : MonoBehaviour
     [SerializeField] private float spawnPositionY = 8.0f;
     private PlayerController playerController;
     [Header("Rewards")]
-    //[SerializeField] private GameObject weaponRewardPrefab;
-    //[SerializeField] private GameObject healthRewatdPrefab; 
     [Space(10)]
     [Header("Waves")]
     public Wave[] waves;
@@ -25,7 +23,7 @@ public class SpawnController : MonoBehaviour
     [Serializable]
     public struct Wave
     {
-        public enum MovementType { infiniteDown, followPath }
+        public enum MovementType { infiniteDown, followPath, fromPositionToPosition }
         public enum RewardType { none, random, weaponReward, healthReward }
         public int id { get; set; }
         public string name;
@@ -37,6 +35,9 @@ public class SpawnController : MonoBehaviour
         public bool randomEnemies;
         public int currentEnemy { get; set; }        
         public MovementType movementType;
+        public Vector3 fromPosition;
+        public Vector3 toPosition;
+        public float fromPosToPosTime; 
         public float infiniteDownSpeed;
         public PathCreator path;
         public EndOfPathInstruction endOfPathInstruction;
@@ -54,7 +55,6 @@ public class SpawnController : MonoBehaviour
 
     private void Start()
     {
-        //initTime = Time.time;
         playerController = GameObject.Find("Player").GetComponent<PlayerController>(); 
         LaunchNextWave();
         InitializeWaves();
@@ -89,7 +89,6 @@ public class SpawnController : MonoBehaviour
     }
     private IEnumerator LaunchWaveCoroutine(Wave wave)
     {
-        //GameController.instance.Log("Launching WAVE: " + wave.name);
         // Skip Wave if quantity = 0  or not enemies added or disabled
         if(wave.quantity > 0 && wave.enabled && wave.enemies.Length > 0)
         {
@@ -139,11 +138,16 @@ public class SpawnController : MonoBehaviour
                     pathFollower.speed = wave.speed; 
                     pathFollower.endOfPathInstruction = wave.endOfPathInstruction;
                 } else if (wave.movementType == Wave.MovementType.infiniteDown)
-            {
-                InfiniteDown infiniteDown = enemy.gameObject.AddComponent<InfiniteDown>();
-                infiniteDown.speed = wave.speed;
+                {
+                    InfiniteDown infiniteDown = enemy.gameObject.AddComponent<InfiniteDown>();
+                    infiniteDown.speed = wave.speed;
                 
-            }
+                } else if (wave.movementType == Wave.MovementType.fromPositionToPosition)
+                {
+                    MoveToPos moveToPos = enemy.gameObject.AddComponent<MoveToPos>();
+                    enemy.transform.position = wave.fromPosition; 
+                    moveToPos.StartMoving(wave.toPosition, wave.fromPosToPosTime, MoveToPos.EassingEffects.cubicEaseOut);
+                }
                 yield return new WaitForSeconds(wave.rate);
             }
         } else
@@ -171,26 +175,6 @@ public class SpawnController : MonoBehaviour
             }
         }
     }
-    /*public void CreateReward(Wave.RewardType m_reward, GameObject m_lastObject)
-    {
-        GameObject prefab = null; 
-        switch(m_reward)
-        {
-            case Wave.RewardType.weaponReward:
-                // Prevent Weapon Reward if Player Weapon Level currently have maximum level
-                if (playerController.currentWeaponLevel < playerController.weaponLevels.Count - 1)
-                {
-                    prefab = weaponRewardPrefab;
-                }
-                break; 
-        }
-        if (prefab)
-        {
-            GameObject rewardInstance = Instantiate(prefab);
-            rewardInstance.transform.position = m_lastObject.transform.position; 
-        }
-        
-
-    }*/
+    
 }
     

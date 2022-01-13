@@ -420,6 +420,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38cd849496d2d814888b1d87032e3ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
+  scoreMultiplier: 10
+  weaponRewardPrefab: {fileID: 0}
+  healthRewardPrefab: {fileID: 0}
+  debugText: {fileID: 0}
   gameState: 0
 --- !u!4 &587236515
 Transform:

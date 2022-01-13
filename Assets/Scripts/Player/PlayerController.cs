@@ -71,37 +71,9 @@ public class PlayerController : MonoBehaviour
         GameController.instance.SetGameState(GameController.GameState.play);
         if (startWithMaxWeaponLevel)
             currentWeaponLevel = weaponLevels.Count - 1;
-        // pathCreator = GetComponent<PathCreator>();
-        // pathFollower = GetComponent<PathFollower>();    
-        uIGameController = GameObject.Find("UI").GetComponent<UIGameController>();
-        audioSource = GetComponent<AudioSource>();
+       audioSource = GetComponent<AudioSource>();
         LoadWeaponLevel(currentWeaponLevel);
-        // LevelUp(); 
-        /*
-
-        Vector3[] points = { 
-            transform.position,
-            new Vector3(transform.position.x, transform.position.y+1, transform.position.z),
-            new Vector3(transform.position.x, transform.position.y+2, transform.position.z),
-            new Vector3(0, transform.position.y+4, transform.position.z),
-
-            new Vector3(0,0,-11),
-          
-
-        };
-        Debug.Log(points.Length); 
-        pathCreator.bezierPath = new BezierPath(points,false,PathSpace.xyz);
-        pathCreator.bezierPath.SetAnchorNormalAngle(0, 270);
-        pathCreator.bezierPath.SetAnchorNormalAngle(1, 270);
-        pathCreator.bezierPath.SetAnchorNormalAngle(2, 270);
-        pathCreator.bezierPath.SetAnchorNormalAngle(3, 90);
-        pathCreator.bezierPath.SetAnchorNormalAngle(4, 90);
-        
-        
-
-        pathCreator.bezierPath.GlobalNormalsAngle = 90;
-        pathCreator.bezierPath.NotifyPathModified(); 
-        pathFollower.pathCreator = pathCreator; */
+     
 
     }
 
@@ -125,7 +97,6 @@ public class PlayerController : MonoBehaviour
         moveToPos.StartMoving(new Vector3(0, 0.88f, -8.5f), 3f, MoveToPos.EassingEffects.cubicEaseInOut);
         moveToPos.destroyComponentAtFinish = true;
         moveToPos.enableAtStart = true;
-        //moveToPos.rotation.y = 359f;
 
         ForceEnginesOn(EngineController.KeyTriggerType.forward);
 
@@ -175,7 +146,6 @@ public class PlayerController : MonoBehaviour
     }
     public void Hit(int damage)
     {
-        // GameController.instance.Log("Player hit, damage: " + damage); 
         if (hitClip)
         {
             audioSource.PlayOneShot(hitClip);
@@ -187,7 +157,11 @@ public class PlayerController : MonoBehaviour
             currentHealth = 0;
             Death();
         }
-        uIGameController.UpdateUIInfo();
+        if (!uIGameController && GameObject.Find("UI"))
+        {
+            uIGameController = GameObject.Find("UI").GetComponent<UIGameController>();
+        }
+        if (uIGameController) uIGameController.UpdateUIInfo();
 
     }
     private void Death()
@@ -212,10 +186,6 @@ public class PlayerController : MonoBehaviour
        
         if (horizontalInput != 0 || verticalInput != 0)
         {
-            /* transform.Translate(
-                Time.deltaTime * speed.x * horizontalInput
-                Time.deltaTime * speed.y * verticalInput, 
-                0,Space.World);*/
             transform.position = new Vector3(
                 transform.position.x + Time.deltaTime * speed.x * horizontalInput,
                 transform.position.y + Time.deltaTime * speed.y * verticalInput,
@@ -248,7 +218,11 @@ public class PlayerController : MonoBehaviour
 
         // Enable weapon level weapons
         foreach (WeaponData weaponData in weaponLevels[weaponLevelNumber].weapons) { LoadWeaponData(weaponData); }
-        uIGameController.UpdateUIInfo();
+        if(!uIGameController && GameObject.Find("UI"))
+        {
+            uIGameController = GameObject.Find("UI").GetComponent<UIGameController>();
+        }
+        if(uIGameController) uIGameController.UpdateUIInfo();
     }
     public void LoadNextWeaponLevel()
     {
@@ -263,7 +237,11 @@ public class PlayerController : MonoBehaviour
     {
         health++;
         currentHealth = health;
-        uIGameController.UpdateUIInfo(); 
+        if (!uIGameController && GameObject.Find("UI"))
+        {
+            uIGameController = GameObject.Find("UI").GetComponent<UIGameController>();
+        }
+        if (uIGameController) uIGameController.UpdateUIInfo(); 
     }
 
 }

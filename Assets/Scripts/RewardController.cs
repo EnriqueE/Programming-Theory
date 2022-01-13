@@ -43,7 +43,6 @@ public class RewardController : MonoBehaviour
     }
     public void Collect()
     {
-        //GameController.instance.Log("Reward Collected"); 
         if (methodCollectReward.GetPersistentEventCount() > 0)
         {
             methodCollectReward.Invoke();

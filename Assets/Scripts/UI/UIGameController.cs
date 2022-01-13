@@ -28,10 +28,8 @@ public class UIGameController : MonoBehaviour
     }
     public void UpdateUIInfo()
     {
-        //Debug.Log(playerController.health.ToString());
 
         UpdateHealthInfo();
-     //   weaponLevelText.text = (playerController.currentWeaponLevel + 1).ToString();
        
         scoreText.text = GameController.instance.score.ToString(); 
 
@@ -72,7 +70,6 @@ public class UIGameController : MonoBehaviour
         }
 
 
-       // healthText.text = playerController.currentHealth.ToString();
     }
     private void Update()
     {

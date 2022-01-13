@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         pool = GameObject.Find("Pool"); 
     }
+
+    // ABSTRACTION
     public void Hit(int damage)
     {
         GameController.instance.AddScore(1); 

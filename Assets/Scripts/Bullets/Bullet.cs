@@ -17,7 +17,6 @@ public class Bullet : MonoBehaviour
     {
         if (bulletParticleSystem)
         {
-            //bulletParticleSystem.transform.parent = GameObject.Find("Pool").transform;
             bulletParticleSystem.transform.parent = gameObject.transform.parent.transform;
             bulletParticleSystem.transform.position = Vector3.zero;
             bulletParticleSystem.transform.localScale = Vector3.one;
@@ -28,7 +27,6 @@ public class Bullet : MonoBehaviour
     {
 
         // Bullet movement
-        //transform.position += transform.TransformDirection(Vector3.up * speed  * Time.deltaTime);
         transform.position += transform.up * speed * Time.deltaTime; 
 
         // Destroy if out of boundary
@@ -49,7 +47,6 @@ public class Bullet : MonoBehaviour
         if(newSpeed>0)
         {
             speed = newSpeed;
-           // Debug.Log("New Speeed: " + newSpeed + " speed: " + speed); 
         }
         
     }

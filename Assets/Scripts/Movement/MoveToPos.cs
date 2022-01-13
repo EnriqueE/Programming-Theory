@@ -56,7 +56,6 @@ public class MoveToPos : MonoBehaviour
                     break; 
 
             }
-            //float factor = (float)Cubic.EaseInOut(currentTime, 0, 1, 1);
 
 
             if (currentTime >= 1)
@@ -73,7 +72,6 @@ public class MoveToPos : MonoBehaviour
                 if(returnAtFinish)
                 {
                     transform.position = initPosition;
-                    //Debug.Log("Returning to " + initPosition); 
                 } else
                 {
                     transform.position = newPos;
@@ -100,7 +98,6 @@ public class MoveToPos : MonoBehaviour
         initPosition = transform.position;
         initRotation = transform.rotation; 
         isMoving = true;
-        //Debug.Log("Moving " + transform.name + " from " + initPosition + " to " + newPosition + " in " + time + " seconds."); 
 
     }
     public void StartMoving(Vector3 newPosition, float time, EassingEffects _eassingEffect)

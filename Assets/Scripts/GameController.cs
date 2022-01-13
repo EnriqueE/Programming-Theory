@@ -10,9 +10,7 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
-    /// <summary>
-    /// Controls de Game
-    /// </summary>
+  
 
     private string m_UserName = "UnnamedPlayer";
     public int score = 0;
@@ -22,8 +20,10 @@ public class GameController : MonoBehaviour
     public GameObject healthRewardPrefab; 
     [Space(10)]
     private UIGameController uIGameController;
-    public TMP_Text debugText; 
-    
+    public TMP_Text debugText;
+
+
+    // ENCAPSULATION
     public string UserName
     {
         set
@@ -87,12 +87,8 @@ public class GameController : MonoBehaviour
     }
     public void SetGameState(GameState newGameState)
     {
-        // Log("Game state changed, now: " + newGameState.ToString()); 
         gameState = newGameState;
-        /*  if(debugGameStateText) {
-            debugGameStateText.text = gameState.ToString(); 
-        }*/
-        if(gameState==GameState.gameOver)
+      if(gameState==GameState.gameOver)
         {
             StartCoroutine("GameOver"); 
             
